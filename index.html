@@ -1,0 +1,3059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Creative Website Manual™</title>
+
+  <!-- Fonts -->
+  <style>
+    @font-face {
+      font-family: 'PP Neue Montreal';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/6907f86744f231d45f187503_PPNeueMontreal-Variable.woff2') format('woff2');
+      font-weight: 200 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal Fixed';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/6904bd172f941ad406d767f0_PPNeueMontreal-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal Fixed';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/6904bd16ff2aa8bc1153037e_PPNeueMontreal-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Neue Montreal Fixed';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/6904bd15f690217a6f9247f8_PPNeueMontreal-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PP Mondwest';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/6904bdedfcd00c4683d0fb5d_PPMondwest-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Rand Mono';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/68f957f26bfa4d1bf62c4894_Rand-Mono-Thin.woff') format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Rand Mono';
+      src: url('https://cdn.prod.website-files.com/68ef488e640a5e4823282b56/68f957fbecbf217a930756cc_Rand-Mono-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <!-- GSAP -->
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/SplitText.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/CustomEase.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/Draggable.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', Arial, sans-serif;
+      background: #070707;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== PRELOADER ===== */
+    .loader-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #070707;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .loader-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .loader-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .loader-blink-text {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .loader-middle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .loader-percent {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(120px, 30vw, 400px);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-dials {
+      display: flex;
+      gap: 4px;
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .loader-dial {
+      width: 32px;
+      height: 3px;
+      background: rgba(255,255,255,0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-dial-fill {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+
+    .loader-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .loader-detail {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    /* ===== ANNOUNCEMENT BAR ===== */
+    .announcement-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 28px;
+      background: #070707;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-right: 2rem;
+      flex-shrink: 0;
+    }
+
+    .marquee-item {
+      font-family: 'Rand Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+    }
+
+    .marquee-item .dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      margin: 0 0.75rem;
+      vertical-align: middle;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav {
+      position: fixed;
+      top: 28px;
+      right: 0;
+      left: 0;
+      z-index: 99;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .menu-btn {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      pointer-events: all;
+      padding: 0.5rem 0;
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+    }
+
+    .menu-btn:hover {
+      opacity: 0.6;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 1.5rem 1.5rem 1.5rem;
+      position: relative;
+    }
+
+    /* Title */
+    .hero-title-wrap {
+      padding-top: 1rem;
+      position: relative;
+    }
+
+    .hero-title-line {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(60px, 14vw, 280px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: none;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .hero-title .char {
+      display: inline-block;
+      will-change: font-weight;
+    }
+
+    .hero-tm {
+      font-family: 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(16px, 3.2vw, 64px);
+      font-weight: 400;
+      letter-spacing: 0;
+      vertical-align: super;
+      line-height: 1;
+      display: inline-block;
+      margin-left: 0.05em;
+      position: relative;
+      top: -0.15em;
+    }
+
+    /* ===== HERO BOTTOM ===== */
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding-top: 2rem;
+      opacity: 0;
+    }
+
+    /* Left Column */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+
+    .hero-coords {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .coord-line {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-credits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .credits-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .credits-names {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .hero-barcode {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .hero-barcode svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Right Column */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 2rem;
+    }
+
+    /* Bracketed Description */
+    .bracket-wrap {
+      position: relative;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .bracket {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+    }
+
+    .bracket.tl {
+      top: 0;
+      left: 0;
+      border-top: 1px solid rgba(255,255,255,0.5);
+      border-left: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .bracket.tr {
+      top: 0;
+      right: 0;
+      border-top: 1px solid rgba(255,255,255,0.5);
+      border-right: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .bracket.bl {
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      border-left: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .bracket.br {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      border-right: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .hero-description {
+      font-family: 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(18px, 2.2vw, 36px);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      font-style: italic;
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .info-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0.75rem 0;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-item {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .info-item:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ===== WORD SPLIT STYLES ===== */
+    .word-wrap {
+      overflow: hidden;
+      display: inline-flex;
+      vertical-align: top;
+    }
+
+    /* ===== ABOUT SECTION (Chapter 1) ===== */
+    .about-section {
+      position: relative;
+      background: #070707;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-card {
+      width: 42%;
+      height: 58%;
+      background: #eaeaea;
+      color: #070707;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transform-origin: center center;
+      will-change: transform, opacity, width, height;
+    }
+
+    .about-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .about-chapter-label,
+    .about-title-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #070707;
+    }
+
+    .about-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 52px;
+      height: 52px;
+    }
+
+    .about-circle svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pixel-wrap {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 0.75rem;
+      overflow: hidden;
+    }
+
+    .pixel-transition {
+      display: grid;
+      width: 100%;
+      gap: 2px;
+    }
+
+    .pixel_item {
+      background: #070707;
+      aspect-ratio: 1;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .about-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-shrink: 0;
+      padding-top: 0.5rem;
+    }
+
+    .about-question {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #070707;
+    }
+
+    .about-arrow {
+      font-family: 'PP Neue Montreal Fixed', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #070707;
+      line-height: 1;
+    }
+
+    /* ===== ABOUT P2: Text Reveal + Clock ===== */
+    .about-p2-section {
+      position: relative;
+      background: #070707;
+      overflow: hidden;
+    }
+
+    .about-p2-content {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .clock-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50vw;
+      height: 50vw;
+      max-width: 700px;
+      max-height: 700px;
+      pointer-events: none;
+    }
+
+    .clock-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .about-p2-text {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(26px, 3.6vw, 58px);
+      font-weight: 500;
+      line-height: 1.35;
+      text-align: center;
+      color: #fff;
+      max-width: 750px;
+      position: relative;
+      z-index: 2;
+      padding: 0 1.5rem;
+    }
+
+    .about-p2-text .word-wrapper {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      padding: 0.05em 0.12em;
+      margin: 0.02em 0;
+    }
+
+    .about-p2-text .overlay-block {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1c1c1c;
+      z-index: 1;
+    }
+
+    /* ===== ABOUT P3: Large Text Block ===== */
+    .about-p3-section {
+      position: relative;
+      background: #070707;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2.5rem 1.5rem 4rem 1.5rem;
+    }
+
+    .about-p3-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-p3-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+    }
+
+    .about-p3-label span {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .about-p3-text {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(30px, 4.5vw, 72px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #eaeaea;
+      max-width: 1400px;
+      padding-left: 1.5rem;
+    }
+
+    .about-p3-text .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    /* ===== PIXEL MOSAIC TRANSITION ===== */
+    .pixel-mosaic-transition {
+      position: relative;
+      background: #070707;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .pixel-mosaic-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+      gap: 0;
+    }
+
+    .pixel-mosaic-cell {
+      background: #eaeaea;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    /* ===== CHAPTER 2: Design & Development ===== */
+    .chapter2-section {
+      position: relative;
+      background: #070707;
+      color: #070707;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .ch2-inner {
+      width: 100%;
+      height: 100%;
+      background: #eaeaea;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.5rem 2.5rem 1.5rem;
+      will-change: transform, opacity;
+      transform-origin: center center;
+      border-radius: 0;
+    }
+
+    .ch2-end-char {
+      display: inline-block;
+      will-change: opacity;
+    }
+
+    .ch2-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex: 1;
+    }
+
+    .ch2-title-wrap {
+      flex: 1;
+      max-width: 65%;
+      padding-top: 0.5rem;
+    }
+
+    .ch2-title {
+      font-family: 'PP Neue Montreal', 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(60px, 13vw, 240px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #070707;
+      margin: 0;
+    }
+
+    .ch2-title .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .ch2-meta {
+      flex-shrink: 0;
+      width: 30%;
+      max-width: 400px;
+      text-align: left;
+      position: relative;
+      padding-top: 0;
+    }
+
+    .ch2-meta-line {
+      width: 100%;
+      height: 1px;
+      background: #070707;
+      margin-bottom: 0.75rem;
+    }
+
+    .ch2-meta-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #070707;
+      margin-bottom: 0.5rem;
+    }
+
+    .ch2-number {
+      font-family: 'PP Neue Montreal', 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(120px, 28vw, 450px);
+      font-weight: 700;
+      line-height: 0.8;
+      letter-spacing: -0.04em;
+      color: #070707;
+      white-space: nowrap;
+      margin: 0;
+    }
+
+    .ch2-bottom {
+      padding-top: 2rem;
+      max-width: 800px;
+    }
+
+    .ch2-chapters-heading {
+      font-family: 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(20px, 2.5vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #070707;
+      margin-bottom: 0.5rem;
+    }
+
+    .ch2-chapters-list {
+      list-style: none;
+    }
+
+    .ch2-chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #070707;
+    }
+
+    .ch2-chapter-num {
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* ===== CHAPTER 2.1: GRIDS & LAYOUTS ===== */
+    .grids-section {
+      position: relative;
+      background: #070707;
+      color: #fff;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    /* Background 12-column grid lines */
+    .grids-bg-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grids-bg-line {
+      border-right: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .grids-bg-line:first-child {
+      border-left: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* Left panel */
+    .grids-left {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.5rem 2.5rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .grids-chapter-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .grids-arrow-card {
+      width: clamp(200px, 22vw, 340px);
+      aspect-ratio: 0.82;
+      background: #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-end;
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    .grids-arrow-icon {
+      width: 64px;
+      height: 64px;
+      color: #070707;
+    }
+
+    .grids-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: auto;
+      padding-top: 2rem;
+    }
+
+    .grids-specs-heading {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(22px, 2.5vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .grids-spec-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      align-items: center;
+    }
+
+    .grids-spec-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .grids-spec-value {
+      font-family: 'Rand Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* Right panel */
+    .grids-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.5rem 2.5rem 1.5rem;
+    }
+
+    .grids-right-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .grids-title {
+      font-family: 'PP Neue Montreal', 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(56px, 10vw, 180px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin: 0;
+    }
+
+    .grids-title .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .grids-selector-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+
+    .grids-selector {
+      width: clamp(180px, 18vw, 280px);
+      aspect-ratio: 0.72;
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grids-crosshair {
+      position: relative;
+      width: 18px;
+      height: 18px;
+    }
+
+    .grids-crosshair::before,
+    .grids-crosshair::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .grids-crosshair::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .grids-crosshair::after {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .grids-description {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(16px, 1.6vw, 26px);
+      font-weight: 400;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      max-width: 480px;
+      align-self: center;
+    }
+
+    .grids-description .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    /* ===== GRIDS P2: "JUST MAKE COOL" Statement ===== */
+    .grids-statement-section {
+      position: relative;
+      background: #070707;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Geometric decorations */
+    .gs-logo {
+      position: absolute;
+      top: 2.5rem;
+      left: 2rem;
+      width: 56px;
+      height: 56px;
+      z-index: 2;
+    }
+
+    .gs-logo svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gs-rect-lg {
+      position: absolute;
+      top: 4rem;
+      right: 8%;
+      width: clamp(180px, 20vw, 320px);
+      height: clamp(220px, 26vw, 400px);
+      border: 1px solid rgba(255,255,255,0.18);
+      z-index: 1;
+    }
+
+    .gs-rect-sm {
+      position: absolute;
+      bottom: 6rem;
+      left: 8%;
+      width: clamp(80px, 9vw, 140px);
+      height: clamp(100px, 11vw, 170px);
+      border: 1px solid rgba(255,255,255,0.18);
+      z-index: 1;
+    }
+
+    .gs-line-top {
+      position: absolute;
+      top: 5.5rem;
+      right: 2rem;
+      width: 42px;
+      height: 2px;
+      z-index: 2;
+    }
+
+    .gs-line-top::before,
+    .gs-line-top::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .gs-line-top::before {
+      top: 0;
+    }
+
+    .gs-line-top::after {
+      top: 6px;
+    }
+
+    .gs-circle {
+      position: absolute;
+      bottom: -8vw;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(300px, 38vw, 600px);
+      height: clamp(300px, 38vw, 600px);
+      border-radius: 50%;
+      background: #ffb700;
+      z-index: 1;
+    }
+
+    /* Statement text */
+    .gs-text {
+      font-family: 'PP Neue Montreal', 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(42px, 8vw, 140px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+    }
+
+    .gs-text .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    /* ===== CHAPTER 2.3: COLORS ===== */
+    .colors-section {
+      position: relative;
+      background: #070707;
+      color: #fff;
+      padding: 6rem 1.5rem 4rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .colors-title {
+      font-family: 'PP Neue Montreal', 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(80px, 16vw, 280px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin: 0 0 2rem 0;
+    }
+
+    .colors-title .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .colors-desc {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(24px, 3.8vw, 62px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.88);
+      margin: 0 0 3rem 0;
+      max-width: 1400px;
+    }
+
+    .colors-desc .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    /* Light beam visual container */
+    .colors-visual-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .colors-visual-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      will-change: clip-path;
+    }
+
+    .colors-visual-gradient:nth-child(1) {
+      background: linear-gradient(135deg, #7dffc8 0%, #5eedb5 50%, #3ddfa0 100%);
+    }
+    .colors-visual-gradient:nth-child(2) {
+      background: linear-gradient(135deg, #4de8c8 0%, #2dd4bf 50%, #1abfb0 100%);
+    }
+    .colors-visual-gradient:nth-child(3) {
+      background: linear-gradient(135deg, #38c9e9 0%, #3ba8f2 50%, #4d8df7 100%);
+    }
+    .colors-visual-gradient:nth-child(4) {
+      background: linear-gradient(135deg, #5c8af5 0%, #7b6cf0 50%, #9b5ee8 100%);
+    }
+    .colors-visual-gradient:nth-child(5) {
+      background: linear-gradient(135deg, #f5a623 0%, #f7891c 50%, #e86b15 100%);
+    }
+    .colors-visual-gradient:nth-child(6) {
+      background: linear-gradient(135deg, #ffd500 0%, #ffca00 50%, #ffc107 100%);
+    }
+
+    /* Tone labels inside visual */
+    .colors-tone-label {
+      position: absolute;
+      z-index: 5;
+    }
+
+    .colors-tone-cool {
+      top: 2rem;
+      right: 3rem;
+    }
+
+    .colors-tone-warm {
+      bottom: 2rem;
+      left: 2rem;
+    }
+
+    .colors-tone-heading {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(24px, 3vw, 42px);
+      font-weight: 500;
+      color: #fff;
+      margin: 0 0 0.4rem 0;
+    }
+
+    .colors-tone-desc {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* Examples section */
+    .colors-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .colors-examples-left {}
+
+    .colors-examples-title {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .colors-examples-title .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .colors-examples-text {
+      font-family: 'PP Neue Montreal Fixed', 'PP Neue Montreal', sans-serif;
+      font-size: clamp(16px, 1.8vw, 26px);
+      font-weight: 400;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .colors-examples-text .words-split {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .colors-examples-right {}
+
+    .colors-example-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 1rem;
+    }
+
+    .colors-example-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .colors-example-name {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .colors-example-preview {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1a1a1a;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .colors-example-preview-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .colors-example-site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 1rem 1.5rem;
+    }
+
+    .colors-example-site-logo {
+      font-family: 'PP Neue Montreal Fixed', sans-serif;
+      font-size: clamp(14px, 1.4vw, 22px);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .colors-example-site-nav {
+      font-family: 'Rand Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .colors-example-site-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="loader-wrap">
+    <div class="loader-top">
+      <div class="loader-label" loader-blink>The Creative Manual™</div>
+      <div class="loader-blink-text" loader-blink>Loading</div>
+    </div>
+    <div class="loader-middle">
+      <div class="loader-percent" loader-div>
+        <span loader-percent>0</span>
+      </div>
+    </div>
+    <div class="loader-dials">
+      <div class="loader-dial"><div class="loader-dial-fill"></div></div>
+      <div class="loader-dial"><div class="loader-dial-fill"></div></div>
+      <div class="loader-dial"><div class="loader-dial-fill"></div></div>
+      <div class="loader-dial"><div class="loader-dial-fill"></div></div>
+      <div class="loader-dial"><div class="loader-dial-fill"></div></div>
+    </div>
+    <div class="loader-bottom">
+      <div class="loader-detail" loader-text>CWM — FW25</div>
+      <div class="loader-detail" loader-text>Design + Dev</div>
+    </div>
+  </div>
+
+  <!-- Announcement Bar / Marquee -->
+  <div class="announcement-bar">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span class="marquee-item">[status:active]</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">The Creative Website Manual™</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Crafting Stand-Out Websites</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">©CWM — FW25</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Design + Development</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Webflow + GSAP</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Project by Huy + Ivor</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+      </div>
+      <div class="marquee-content">
+        <span class="marquee-item">[status:active]</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">The Creative Website Manual™</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Crafting Stand-Out Websites</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">©CWM — FW25</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Design + Development</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Webflow + GSAP</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+        <span class="marquee-item">Project by Huy + Ivor</span>
+        <span class="marquee-item"><span class="dot"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <button class="menu-btn">MENU [+]</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-title-wrap">
+      <div class="hero-title-line">
+        <h1 class="hero-title" id="heroLine1">The ©reative</h1>
+      </div>
+      <div class="hero-title-line">
+        <h1 class="hero-title" id="heroLine2">Website Manual<span class="hero-tm">TM</span></h1>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <!-- Left Column -->
+      <div class="hero-left">
+        <div class="hero-coords">
+          <div class="coord-line">[X].<span class="coord-x">0</span>PX</div>
+          <div class="coord-line">[Y].<span class="coord-y">0</span>PX</div>
+        </div>
+
+        <div class="hero-credits">
+          <div class="credits-label">PROJECT BY</div>
+          <div class="credits-names">HUY &nbsp;+ &nbsp;IVOR</div>
+        </div>
+
+        <div class="hero-barcode">
+          <svg viewBox="0 0 380 65" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0" width="5" height="65" fill="white"/>
+            <rect x="7" y="0" width="5" height="65" fill="white"/>
+            <rect x="14" y="0" width="2" height="65" fill="white"/>
+            <rect x="18" y="0" width="5" height="65" fill="white"/>
+            <rect x="25" y="0" width="2" height="65" fill="white"/>
+            <rect x="29" y="0" width="8" height="65" fill="white"/>
+            <rect x="39" y="0" width="2" height="65" fill="white"/>
+            <rect x="43" y="0" width="5" height="65" fill="white"/>
+            <rect x="50" y="0" width="2" height="65" fill="white"/>
+            <rect x="54" y="0" width="2" height="65" fill="white"/>
+            <rect x="60" y="0" width="5" height="65" fill="white"/>
+            <rect x="67" y="0" width="8" height="65" fill="white"/>
+            <rect x="77" y="0" width="2" height="65" fill="white"/>
+            <rect x="81" y="0" width="5" height="65" fill="white"/>
+            <rect x="88" y="0" width="2" height="65" fill="white"/>
+            <rect x="92" y="0" width="5" height="65" fill="white"/>
+            <rect x="102" y="0" width="5" height="65" fill="white"/>
+            <rect x="109" y="0" width="2" height="65" fill="white"/>
+            <rect x="113" y="0" width="8" height="65" fill="white"/>
+            <rect x="123" y="0" width="2" height="65" fill="white"/>
+            <rect x="127" y="0" width="5" height="65" fill="white"/>
+            <rect x="138" y="0" width="2" height="65" fill="white"/>
+            <rect x="142" y="0" width="5" height="65" fill="white"/>
+            <rect x="149" y="0" width="5" height="65" fill="white"/>
+            <rect x="156" y="0" width="2" height="65" fill="white"/>
+            <rect x="160" y="0" width="8" height="65" fill="white"/>
+            <rect x="172" y="0" width="5" height="65" fill="white"/>
+            <rect x="179" y="0" width="2" height="65" fill="white"/>
+            <rect x="183" y="0" width="5" height="65" fill="white"/>
+            <rect x="190" y="0" width="2" height="65" fill="white"/>
+            <rect x="194" y="0" width="2" height="65" fill="white"/>
+            <rect x="200" y="0" width="5" height="65" fill="white"/>
+            <rect x="207" y="0" width="8" height="65" fill="white"/>
+            <rect x="217" y="0" width="2" height="65" fill="white"/>
+            <rect x="221" y="0" width="5" height="65" fill="white"/>
+            <rect x="228" y="0" width="5" height="65" fill="white"/>
+            <rect x="235" y="0" width="2" height="65" fill="white"/>
+            <rect x="239" y="0" width="8" height="65" fill="white"/>
+            <rect x="253" y="0" width="5" height="65" fill="white"/>
+            <rect x="260" y="0" width="2" height="65" fill="white"/>
+            <rect x="264" y="0" width="5" height="65" fill="white"/>
+            <rect x="271" y="0" width="2" height="65" fill="white"/>
+            <rect x="275" y="0" width="5" height="65" fill="white"/>
+            <rect x="282" y="0" width="8" height="65" fill="white"/>
+            <rect x="292" y="0" width="2" height="65" fill="white"/>
+            <rect x="296" y="0" width="5" height="65" fill="white"/>
+            <rect x="303" y="0" width="5" height="65" fill="white"/>
+            <rect x="310" y="0" width="2" height="65" fill="white"/>
+            <rect x="318" y="0" width="5" height="65" fill="white"/>
+            <rect x="325" y="0" width="2" height="65" fill="white"/>
+            <rect x="329" y="0" width="8" height="65" fill="white"/>
+            <rect x="339" y="0" width="5" height="65" fill="white"/>
+            <rect x="346" y="0" width="2" height="65" fill="white"/>
+            <rect x="350" y="0" width="5" height="65" fill="white"/>
+            <rect x="357" y="0" width="2" height="65" fill="white"/>
+            <rect x="361" y="0" width="5" height="65" fill="white"/>
+            <rect x="368" y="0" width="5" height="65" fill="white"/>
+            <rect x="375" y="0" width="5" height="65" fill="white"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="hero-right">
+        <div class="bracket-wrap">
+          <span class="bracket tl"></span>
+          <span class="bracket tr"></span>
+          <p class="hero-description">The creative process of<br>crafting stand-out websites</p>
+          <span class="bracket bl"></span>
+          <span class="bracket br"></span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-row">
+            <div class="info-label">ACTIVE INGREDIENTS</div>
+            <div class="info-items">
+              <div class="info-item">WEBFLOW</div>
+              <div class="info-item">GSAP</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">CHAPTERS</div>
+            <div class="info-items">
+              <div class="info-item">01. ABOUT</div>
+              <div class="info-item">02. DESIGN + DEV</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section (Chapter 1) -->
+  <section class="about-section">
+    <div class="about-card">
+      <div class="about-header">
+        <span class="about-chapter-label">CHAPTER 1:</span>
+        <span class="about-title-label">ABOUT</span>
+      </div>
+
+      <div class="about-circle">
+        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="26" cy="26" r="25" fill="#070707"/>
+          <line x1="26" y1="17" x2="26" y2="35" stroke="#eaeaea" stroke-width="1.5"/>
+          <line x1="17" y1="26" x2="35" y2="26" stroke="#eaeaea" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <div class="pixel-wrap">
+        <div class="pixel-transition" id="pixelTransition"></div>
+      </div>
+
+      <div class="about-footer">
+        <span class="about-question">WHY CREATIVE WEBSITES?</span>
+        <span class="about-arrow">&larr;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About P2: Text Reveal + Clock -->
+  <section class="about-p2-section">
+    <div class="about-p2-content">
+      <div class="clock-wrap">
+        <svg class="clock-svg" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <p class="about-p2-text">Creative websites are the intersection of creativity and technicality to form bespoke digital experiences that spark emotion.</p>
+    </div>
+  </section>
+
+  <!-- About P3: Large Text Block -->
+  <section class="about-p3-section">
+    <div class="about-p3-label">
+      <div class="about-p3-dot"></div>
+      <span>ABOUT</span>
+    </div>
+    <p class="about-p3-text">This project is dedicated to the methodology behind crafting websites that pushes boundaries. Our process values curiosity iteration, and experimentation. View some of our techniques on creating projects that leave a lasting impression.</p>
+  </section>
+
+  <!-- Pixel Mosaic Transition -->
+  <section class="pixel-mosaic-transition">
+    <div class="pixel-mosaic-grid" id="pixelMosaicGrid"></div>
+  </section>
+
+  <!-- Chapter 2: Design & Development -->
+  <section class="chapter2-section">
+    <div class="ch2-inner">
+      <div class="ch2-top">
+        <div class="ch2-title-wrap">
+          <h2 class="ch2-title">Design &amp; Development</h2>
+        </div>
+        <div class="ch2-meta">
+          <div class="ch2-meta-line"></div>
+          <div class="ch2-meta-label">CHAPTER:</div>
+          <p class="ch2-number">02</p>
+        </div>
+      </div>
+
+      <div class="ch2-bottom">
+        <div class="ch2-chapters-heading">CHAPTERS</div>
+        <ul class="ch2-chapters-list">
+          <li class="ch2-chapter-item">
+            <span class="ch2-chapter-num">2.1</span>
+            <span class="ch2-chapter-name">GRIDS &amp; LAYOUTS</span>
+          </li>
+          <li class="ch2-chapter-item">
+            <span class="ch2-chapter-num">2.2</span>
+            <span class="ch2-chapter-name">TYPOGRAPHY</span>
+          </li>
+          <li class="ch2-chapter-item">
+            <span class="ch2-chapter-num">2.3</span>
+            <span class="ch2-chapter-name">COLOR</span>
+          </li>
+          <li class="ch2-chapter-item">
+            <span class="ch2-chapter-num">2.4</span>
+            <span class="ch2-chapter-name">ANIMATION</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 2.1: Grids & Layouts -->
+  <section class="grids-section">
+    <!-- Background 12-column grid lines -->
+    <div class="grids-bg-lines">
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+      <div class="grids-bg-line"></div>
+    </div>
+
+    <!-- Left Panel -->
+    <div class="grids-left">
+      <div class="grids-chapter-label">CHAPTER 2.1: GRIDS &amp; LAYOUTS</div>
+
+      <div class="grids-arrow-card">
+        <svg class="grids-arrow-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="32" y1="8" x2="32" y2="50" stroke="#070707" stroke-width="2.5"/>
+          <polyline points="18,38 32,52 46,38" fill="none" stroke="#070707" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="grids-specs">
+        <div class="grids-specs-heading">Current Grid Specs</div>
+        <div class="grids-spec-row">
+          <span class="grids-spec-label">COLUMNS</span>
+          <span class="grids-spec-value">12</span>
+        </div>
+        <div class="grids-spec-row">
+          <span class="grids-spec-label">ROWS</span>
+          <span class="grids-spec-value">NONE</span>
+        </div>
+        <div class="grids-spec-row">
+          <span class="grids-spec-label">GUTTER / GAP</span>
+          <span class="grids-spec-value">1REM / 16PX</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="grids-right">
+      <div class="grids-right-top">
+        <h2 class="grids-title">Grids &amp;<br>Layouts</h2>
+      </div>
+
+      <div class="grids-selector-wrap">
+        <div class="grids-selector">
+          <div class="grids-crosshair"></div>
+        </div>
+      </div>
+
+      <p class="grids-description">Using a grid can assist in creative cohesive, precise and satisfying layouts by aligning and grouping elements within the grid.</p>
+    </div>
+  </section>
+
+  <!-- Grids P2: Statement Section -->
+  <section class="grids-statement-section">
+    <!-- © Logo -->
+    <div class="gs-logo">
+      <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="26" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <circle cx="28" cy="28" r="20" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <path d="M35 22.5C33.2 20.2 30.8 19 28 19c-5 0-9 4-9 9s4 9 9 9c2.8 0 5.2-1.2 7-3.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Decorative rectangles -->
+    <div class="gs-rect-lg"></div>
+    <div class="gs-rect-sm"></div>
+
+    <!-- Top-right lines -->
+    <div class="gs-line-top"></div>
+
+    <!-- Yellow circle -->
+    <div class="gs-circle"></div>
+
+    <!-- Statement text -->
+    <h2 class="gs-text">JUST MAKE<br>COOL &amp; UX FRIENDLY<br>DESIGNS</h2>
+  </section>
+
+  <!-- Chapter 2.3: Colors -->
+  <section class="colors-section">
+    <!-- Title -->
+    <h2 class="colors-title">Colors</h2>
+
+    <!-- Description -->
+    <p class="colors-desc">Every award-winning site shares one thing: intentional color. It's not picked from a palette, it's designed to evoke, to direct, and to tell a story.</p>
+
+    <!-- Light beam visual -->
+    <div class="colors-visual-wrap">
+      <!-- 6 gradient beams -->
+      <div class="colors-visual-gradient"></div>
+      <div class="colors-visual-gradient"></div>
+      <div class="colors-visual-gradient"></div>
+      <div class="colors-visual-gradient"></div>
+      <div class="colors-visual-gradient"></div>
+      <div class="colors-visual-gradient"></div>
+
+      <!-- Cool tones label -->
+      <div class="colors-tone-label colors-tone-cool">
+        <h3 class="colors-tone-heading">Cool tones</h3>
+        <p class="colors-tone-desc">EVOKE EMOTIONS SUCH AS CALM,<br>SOPHISTICATION, AND TRUST.</p>
+      </div>
+
+      <!-- Warm tones label -->
+      <div class="colors-tone-label colors-tone-warm">
+        <h3 class="colors-tone-heading">Warm tones</h3>
+        <p class="colors-tone-desc">EVOKE EMOTIONS SUCH AS ENERGY,<br>PASSION, AND ANGER.</p>
+      </div>
+    </div>
+
+    <!-- Examples section -->
+    <div class="colors-examples">
+      <div class="colors-examples-left">
+        <h3 class="colors-examples-title">Examples</h3>
+        <p class="colors-examples-text">Colors on a website are rarely picked from colors or any typical palettes. Rather it's a combination of carefully using the right accent colors to highlight a specific element or emotion and using secondary and primary colors to support it.</p>
+      </div>
+      <div class="colors-examples-right">
+        <div class="colors-example-label">
+          <div class="colors-example-dot"></div>
+          <span class="colors-example-name">OH ARCHITECTURE</span>
+        </div>
+        <div class="colors-example-preview">
+          <div class="colors-example-site-header">
+            <span class="colors-example-site-logo">OH Architecture</span>
+            <span class="colors-example-site-nav">WORKS. STUDIO. PROCESS. GALLERY</span>
+          </div>
+          <div class="colors-example-preview-inner">
+            <div style="width:100%;height:100%;background:linear-gradient(180deg, #87CEEB 0%, #4a8f4a 60%, #2d5a2d 100%);opacity:0.5;border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ===== GSAP PLUGIN REGISTRATION =====
+    gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, ScrambleTextPlugin, Draggable);
+
+    // ===== CUSTOM EASING CURVES =====
+    CustomEase.create("ease-primary", "0.87, 0, 0.13, 1");
+    CustomEase.create("ease-secondary", "0.31, 0.75, 0.22, 1");
+    CustomEase.create("ease-fade", "0.76, 0, 0.24, 1");
+    CustomEase.create("ease-transition", "0.16, 1, 0.35, 1");
+    CustomEase.create("ease-button", "0.16, 1, 0.3, 1");
+    CustomEase.create("ease-preloader", ".64,.04,.42,.99");
+
+    // ===== LENIS SMOOTH SCROLL =====
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    // ===== PRELOADER =====
+    function initLoader() {
+      const loaderWrap = document.querySelector(".loader-wrap");
+
+      // Split blink text elements into characters
+      var blinkSplit = SplitText.create("[loader-blink]", { type: "chars" });
+      const blinkChars = blinkSplit.chars;
+
+      function loaderBlink() {
+        // Fade in loader UI elements
+        gsap.to(".loader-label, .loader-blink-text, .loader-dials, .loader-detail", {
+          autoAlpha: 1,
+          duration: 0.5,
+        });
+
+        // Blink in characters
+        gsap.set(blinkChars, { opacity: 0 });
+        const tl = gsap.timeline();
+
+        blinkChars.forEach((char) => {
+          let charTl = gsap.timeline();
+          charTl
+            .to(char, { delay: .4, opacity: 1, duration: 0.04 })
+            .to(char, { delay: .02, opacity: 0, duration: 0.03 })
+            .to(char, { opacity: 1, duration: 0.04 })
+            .to(char, { opacity: 1, duration: 0.05, ease: "power4.out" });
+          tl.add(charTl, Math.random() * 0.3);
+        });
+      }
+
+      function loader() {
+        let tl = gsap.timeline();
+        let counter = { value: 0 };
+
+        const percentEl = document.querySelector("[loader-percent]");
+        const loaderDiv = document.querySelector("[loader-div]");
+        const texts = document.querySelectorAll('[loader-text]');
+        const ogText = Array.from(texts).map(el => el.textContent);
+
+        function loaderCount() {
+          let progress = Math.round(counter.value);
+          percentEl.textContent = progress;
+        }
+
+        gsap.from(loaderDiv, {
+          autoAlpha: 0,
+          duration: .3,
+          ease: "steps(2)"
+        });
+
+        tl.call(loaderBlink)
+          .to(counter, {
+            delay: 1.2,
+            onUpdate: loaderCount,
+            ease: "ease-preloader",
+            value: 100,
+            duration: 2,
+          })
+          .to(loaderDiv, {
+            delay: 1.2,
+            duration: 1.8,
+            ease: "ease-preloader",
+            height: "100%"
+          }, 0)
+          .to(texts, {
+            duration: .00001,
+            scrambleText: {
+              chars: " ",
+              text: " ",
+              speed: .6,
+              tweenLength: false,
+              rightToLeft: false,
+            }
+          }, 0)
+          .to(texts, {
+            delay: .6,
+            duration: .2,
+            stagger: .14,
+            scrambleText: (index) => ({
+              chars: " ",
+              text: ogText[index],
+              speed: .5,
+              tweenLength: false,
+              rightToLeft: false,
+            })
+          }, 0)
+          .to(".loader-dial-fill", {
+            duration: .4,
+            left: 0,
+            stagger: .07,
+            ease: 'ease-preloader'
+          })
+          .to(texts, {
+            delay: 3,
+            duration: .1,
+            stagger: .03,
+            scrambleText: (index) => ({
+              chars: " ",
+              text: " ",
+              speed: .5,
+              tweenLength: false,
+              rightToLeft: true,
+            })
+          }, 0)
+          .to(blinkChars, {
+            stagger: { amount: 0.1, from: "random" },
+            duration: .4,
+            ease: "steps(4)",
+            opacity: 0,
+          }, "<.2")
+          .to(loaderWrap, {
+            autoAlpha: 0,
+            duration: .3,
+            ease: "steps(7)"
+          }, "<.4")
+          .set(loaderWrap, {
+            display: "none"
+          }, "<1");
+      }
+
+      function homeLoad() {
+        // Re-enable scrolling and trigger hero entrance animation
+        lenis.start();
+        masterTl.play();
+      }
+
+      loader();
+      // homeLoad fires after 3.5s delay, matching the original timing
+      gsap.delayedCall(3.5, homeLoad);
+    }
+
+    // Stop scrolling during preloader
+    lenis.stop();
+    initLoader();
+
+    // ===== SPLIT TEXT FOR HERO TITLE =====
+    const heroLines = document.querySelectorAll('.hero-title');
+    let allChars = [];
+    let allWords = [];
+
+    heroLines.forEach((line) => {
+      const split = new SplitText(line, {
+        type: "words, chars",
+        wordsClass: "word-wrap",
+        charsClass: "char"
+      });
+      allChars.push(...split.chars);
+      allWords.push(...split.words);
+    });
+
+    // Ensure word wrappers mask the reveal
+    allWords.forEach(w => {
+      w.style.overflow = 'hidden';
+      w.style.display = 'inline-flex';
+      w.style.verticalAlign = 'top';
+    });
+
+    // ===== ENTRANCE ANIMATION TIMELINE =====
+    const masterTl = gsap.timeline({ paused: true });
+
+    // 1. Announcement bar fade in
+    masterTl.to('.announcement-bar', {
+      opacity: 1,
+      duration: 0.6,
+      ease: "ease-fade"
+    }, 0);
+
+    // 2. Menu button fade in
+    masterTl.to('.menu-btn', {
+      opacity: 1,
+      duration: 0.6,
+      ease: "ease-fade"
+    }, 0.2);
+
+    // 3. Hero title chars reveal (slide up from below)
+    masterTl.from(allChars, {
+      yPercent: 110,
+      duration: 0.9,
+      stagger: 0.018,
+      ease: "ease-transition"
+    }, 0.4);
+
+    // 4. TM fade in
+    masterTl.from('.hero-tm', {
+      opacity: 0,
+      yPercent: 40,
+      duration: 0.6,
+      ease: "ease-transition"
+    }, 1.0);
+
+    // 5. Bottom section reveals
+    masterTl.to('.hero-bottom', {
+      opacity: 1,
+      duration: 0.01
+    }, 1.1);
+
+    // Coords scramble in
+    masterTl.from('.coord-line', {
+      opacity: 0,
+      y: 10,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: "ease-transition"
+    }, 1.1);
+
+    // Credits
+    masterTl.from('.hero-credits', {
+      opacity: 0,
+      y: 10,
+      duration: 0.5,
+      ease: "ease-transition"
+    }, 1.2);
+
+    // Barcode
+    masterTl.from('.hero-barcode', {
+      opacity: 0,
+      duration: 0.6,
+      ease: "ease-fade"
+    }, 1.3);
+
+    // Bracket description
+    masterTl.from('.bracket-wrap', {
+      opacity: 0,
+      y: 15,
+      duration: 0.6,
+      ease: "ease-transition"
+    }, 1.15);
+
+    // Info grid rows
+    masterTl.from('.info-row', {
+      opacity: 0,
+      y: 10,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "ease-transition"
+    }, 1.3);
+
+    // 6. After entrance, activate proximity effect
+    masterTl.call(activateProximityEffect, [], 1.8);
+
+    // ===== MARQUEE ANIMATION =====
+    const marqueeContent = document.querySelector('.marquee-content');
+    if (marqueeContent) {
+      const contentWidth = marqueeContent.offsetWidth;
+      gsap.to('.marquee-track', {
+        x: -contentWidth,
+        repeat: -1,
+        duration: 30,
+        ease: "linear"
+      });
+    }
+
+    // ===== MOUSE COORDINATE TRACKING =====
+    const coordX = document.querySelector('.coord-x');
+    const coordY = document.querySelector('.coord-y');
+
+    document.addEventListener('mousemove', (e) => {
+      coordX.textContent = Math.round(e.pageX);
+      coordY.textContent = Math.round(e.pageY);
+    });
+
+    // ===== FONT WEIGHT PROXIMITY EFFECT =====
+    function activateProximityEffect() {
+      const radius = 350;
+      const minWeight = 200;
+      const maxWeight = 800;
+
+      document.addEventListener('mousemove', (e) => {
+        const mx = e.pageX;
+        const my = e.pageY;
+
+        allChars.forEach((char) => {
+          const rect = char.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2 + window.scrollX;
+          const cy = rect.top + rect.height / 2 + window.scrollY;
+          const dist = Math.sqrt(Math.pow(mx - cx, 2) + Math.pow(my - cy, 2));
+
+          let weight;
+          if (dist < radius) {
+            weight = gsap.utils.mapRange(0, radius, minWeight, maxWeight, Math.max(0, radius - dist));
+          } else {
+            weight = minWeight;
+          }
+
+          gsap.to(char, {
+            fontWeight: weight,
+            duration: 0.6,
+            ease: "ease-transition",
+            overwrite: "auto"
+          });
+        });
+      });
+    }
+
+    // ===== BARCODE FLICKER ENTRANCE =====
+    const barcodeRects = document.querySelectorAll('.hero-barcode rect');
+    const barcodeTl = gsap.timeline({ delay: 1.3 });
+
+    barcodeRects.forEach((rect, i) => {
+      const flickerTl = gsap.timeline();
+      flickerTl
+        .set(rect, { opacity: 0 })
+        .to(rect, { delay: 0.25 * Math.random(), opacity: 1, duration: 0.05 })
+        .to(rect, { delay: 0.02, opacity: 0, duration: 0.04 })
+        .to(rect, { delay: 0.1 * Math.random(), opacity: 1, duration: 0.06 })
+        .to(rect, { delay: 0.15, opacity: 1, duration: 0.07 });
+      barcodeTl.add(flickerTl, 0.3 * Math.random());
+    });
+
+    // ===== SCRAMBLE TEXT ON COORDS =====
+    masterTl.call(() => {
+      const coordXEl = document.querySelector('.coord-x');
+      const coordYEl = document.querySelector('.coord-y');
+      gsap.to(coordXEl, {
+        duration: 0.8,
+        scrambleText: {
+          chars: "0123456789",
+          text: "0",
+          tweenLength: false,
+          speed: 0.3
+        },
+        ease: "none"
+      });
+      gsap.to(coordYEl, {
+        duration: 0.8,
+        scrambleText: {
+          chars: "0123456789",
+          text: "0",
+          tweenLength: false,
+          speed: 0.3
+        },
+        ease: "none"
+      });
+    }, [], 1.1);
+
+    // ===== ABOUT SECTION (Chapter 1) =====
+    function initAboutSection() {
+      const container = document.getElementById('pixelTransition');
+      if (!container) return;
+
+      // --- Generate pixel art via canvas ---
+      const text = '</TECHNICALITY>';
+      const renderCanvas = document.createElement('canvas');
+      const ctx = renderCanvas.getContext('2d');
+
+      renderCanvas.width = 900;
+      renderCanvas.height = 130;
+
+      ctx.fillStyle = '#000';
+      ctx.font = 'bold 100px "Times New Roman", "Georgia", serif';
+      ctx.textBaseline = 'middle';
+
+      // Center the text horizontally
+      const metrics = ctx.measureText(text);
+      const textX = (renderCanvas.width - metrics.width) / 2;
+      ctx.fillText(text, textX, renderCanvas.height / 2);
+
+      // Downsample to pixel grid
+      const blockSize = 12;
+      const cols = Math.floor(renderCanvas.width / blockSize);
+      const rows = Math.floor(renderCanvas.height / blockSize);
+
+      const imageData = ctx.getImageData(0, 0, renderCanvas.width, renderCanvas.height);
+
+      container.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+      container.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
+
+      const pixelItems = [];
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const sx = col * blockSize + Math.floor(blockSize / 2);
+          const sy = row * blockSize + Math.floor(blockSize / 2);
+          const idx = (sy * renderCanvas.width + sx) * 4;
+          const alpha = imageData.data[idx + 3];
+
+          if (alpha > 80) {
+            const pixel = document.createElement('div');
+            pixel.className = 'pixel_item';
+            pixel.style.gridColumn = (col + 1).toString();
+            pixel.style.gridRow = (row + 1).toString();
+            container.appendChild(pixel);
+            pixelItems.push(pixel);
+          }
+        }
+      }
+
+      if (pixelItems.length === 0) return;
+
+      // Randomize order with index bias (matching original site)
+      const shuffled = pixelItems
+        .map(function(el, i) {
+          return { el: el, sort: Math.random() + i / pixelItems.length };
+        })
+        .sort(function(a, b) { return b.sort - a.sort; })
+        .map(function(item) { return item.el; });
+
+      // --- GSAP Scroll Animations ---
+      gsap.set(pixelItems, { opacity: 0 });
+
+      // Master timeline for the about section
+      const aboutTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.about-section',
+          start: 'top top',
+          end: '+=600%',
+          scrub: 1,
+          pin: true
+        }
+      });
+
+      // Phase 0: Card expansion from small to full viewport (0% - 35%)
+      aboutTl.to('.about-card', {
+        width: '100%',
+        height: '100%',
+        duration: 2,
+        ease: 'none'
+      }, 0);
+
+      // Circle + rotates 180° to become × during expansion
+      aboutTl.to('.about-circle svg', {
+        rotation: 180,
+        duration: 2,
+        ease: 'none'
+      }, 0);
+
+      // Phase 1: Pixel reveal (35% - 70%)
+      aboutTl.to(shuffled, {
+        opacity: 1,
+        stagger: {
+          amount: 1.2,
+          grid: [cols, rows],
+          axis: 'y'
+        },
+        duration: 2.5
+      }, 2.5);
+
+      // Phase 2: Hold fully revealed (70% - 80%)
+      // (natural pause in timeline)
+
+      // Phase 3: Scale down card (80% - 100%)
+      aboutTl.to('.about-card', {
+        scale: 0.82,
+        borderRadius: '0.5rem',
+        duration: 1.2,
+        ease: 'none'
+      }, 5.5);
+
+      aboutTl.to('.about-card', {
+        opacity: 0.15,
+        duration: 0.8,
+        ease: 'none'
+      }, 6.2);
+    }
+
+    initAboutSection();
+
+    // ===== ABOUT P2: Text Reveal + Clock =====
+    function initAboutP2() {
+      const section = document.querySelector('.about-p2-section');
+      const textEl = document.querySelector('.about-p2-text');
+      const clockSvg = document.querySelector('.clock-svg');
+
+      if (!section || !textEl || !clockSvg) return;
+
+      // --- Generate clock tick marks ---
+      const ns = 'http://www.w3.org/2000/svg';
+      const clockGroup = document.createElementNS(ns, 'g');
+      const cx = 300, cy = 300;
+      const numTicks = 60;
+
+      for (let i = 0; i < numTicks; i++) {
+        const angle = ((i * 360 / numTicks) - 90) * Math.PI / 180;
+        const isMajor = i % 5 === 0;
+        const r1 = isMajor ? 210 : 235;
+        const r2 = 280;
+
+        const line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', cx + r1 * Math.cos(angle));
+        line.setAttribute('y1', cy + r1 * Math.sin(angle));
+        line.setAttribute('x2', cx + r2 * Math.cos(angle));
+        line.setAttribute('y2', cy + r2 * Math.sin(angle));
+        line.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+        line.setAttribute('stroke-width', isMajor ? '1.5' : '0.8');
+        line.setAttribute('stroke-dasharray', '4 3');
+        clockGroup.appendChild(line);
+      }
+
+      clockSvg.appendChild(clockGroup);
+      const tickLines = clockGroup.querySelectorAll('line');
+
+      // --- Split text into words + create overlay blocks ---
+      const split = new SplitText(textEl, { type: 'words' });
+      const words = split.words;
+
+      words.forEach(function(word) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'word-wrapper';
+        word.parentNode.insertBefore(wrapper, word);
+        wrapper.appendChild(word);
+
+        var overlay = document.createElement('div');
+        overlay.className = 'overlay-block';
+        wrapper.appendChild(overlay);
+      });
+
+      // --- ScrollTrigger: Pin section ---
+      ScrollTrigger.create({
+        trigger: section,
+        pin: true,
+        start: 'top top',
+        end: '+=250%'
+      });
+
+      // --- Overlay blocks fade out (reveals text word by word) ---
+      gsap.to('.about-p2-text .overlay-block', {
+        opacity: 0,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 20%',
+          end: '+=180%',
+          scrub: 1
+        }
+      });
+
+      // --- Clock tick marks fade in with step easing ---
+      gsap.from(tickLines, {
+        opacity: 0,
+        ease: 'steps(1)',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 20%',
+          end: '+=200%',
+          scrub: 1
+        }
+      });
+    }
+
+    initAboutP2();
+
+    // ===== ABOUT P3: Large Text Block =====
+    function initAboutP3() {
+      const section = document.querySelector('.about-p3-section');
+      const textEl = document.querySelector('.about-p3-text');
+      if (!section || !textEl) return;
+
+      // SplitText word reveal with mask
+      SplitText.create(textEl, {
+        type: 'words',
+        autoSplit: true,
+        mask: 'words',
+        wordsClass: 'words-split',
+        onSplit: function(self) {
+          gsap.from(self.words, {
+            yPercent: 101,
+            duration: 0.9,
+            stagger: 0.02,
+            ease: 'ease-transition',
+            scrollTrigger: {
+              trigger: textEl,
+              start: 'top 80%',
+              once: true
+            }
+          });
+        }
+      });
+
+      // Label fade in
+      gsap.from('.about-p3-label', {
+        opacity: 0,
+        y: 10,
+        duration: 0.6,
+        ease: 'ease-transition',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          once: true
+        }
+      });
+    }
+
+    initAboutP3();
+
+    // ===== PIXEL MOSAIC TRANSITION =====
+    function initPixelMosaic() {
+      const grid = document.getElementById('pixelMosaicGrid');
+      if (!grid) return;
+
+      const totalCells = 10 * 9; // 10 cols x 9 rows
+      const cells = [];
+
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'pixel-mosaic-cell';
+        grid.appendChild(cell);
+        cells.push(cell);
+      }
+
+      // Randomize with index bias (matching original site pattern)
+      const shuffled = cells
+        .map(function(el, i) {
+          return { el: el, sort: Math.random() + i / cells.length };
+        })
+        .sort(function(a, b) { return b.sort - a.sort; })
+        .map(function(item) { return item.el; });
+
+      gsap.set(cells, { opacity: 0 });
+
+      gsap.to(shuffled, {
+        opacity: 1,
+        stagger: {
+          amount: 1.3,
+          grid: [10, 9],
+          axis: 'y'
+        },
+        ease: 'ease-transition',
+        scrollTrigger: {
+          trigger: '.pixel-mosaic-transition',
+          scrub: true,
+          start: 'top bottom',
+          end: 'bottom top'
+        }
+      });
+    }
+
+    initPixelMosaic();
+
+    // ===== CHAPTER 2: Design & Development =====
+    function initChapter2() {
+      const section = document.querySelector('.chapter2-section');
+      if (!section) return;
+
+      // Title SplitText word reveal
+      var ch2Title = document.querySelector('.ch2-title');
+      if (ch2Title) {
+        SplitText.create(ch2Title, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.9,
+              stagger: 0.03,
+              ease: 'ease-transition',
+              scrollTrigger: {
+                trigger: ch2Title,
+                start: 'top 85%',
+                once: true
+              }
+            });
+          }
+        });
+      }
+
+      // Meta line + label + number stagger in
+      gsap.from('.ch2-meta-line', {
+        scaleX: 0,
+        transformOrigin: 'right center',
+        duration: 0.8,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: '.ch2-meta', start: 'top 85%', once: true }
+      });
+
+      gsap.from('.ch2-meta-label', {
+        opacity: 0,
+        y: 10,
+        duration: 0.5,
+        ease: 'ease-transition',
+        delay: 0.2,
+        scrollTrigger: { trigger: '.ch2-meta', start: 'top 85%', once: true }
+      });
+
+      gsap.from('.ch2-number', {
+        opacity: 0,
+        yPercent: 20,
+        duration: 0.8,
+        ease: 'ease-transition',
+        delay: 0.3,
+        scrollTrigger: { trigger: '.ch2-meta', start: 'top 85%', once: true }
+      });
+
+      // Chapters heading
+      gsap.from('.ch2-chapters-heading', {
+        opacity: 0,
+        y: 15,
+        duration: 0.6,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.ch2-bottom', start: 'top 85%', once: true }
+      });
+
+      // Chapter list items stagger
+      gsap.from('.ch2-chapter-item', {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.ch2-chapters-list', start: 'top 88%', once: true }
+      });
+    }
+
+    initChapter2();
+
+    // ===== CHAPTER 2: SECTION END TRANSITION =====
+    function initSectionEnd() {
+      const section = document.querySelector('.chapter2-section');
+      const inner = document.querySelector('.ch2-inner');
+      if (!section || !inner) return;
+
+      // Collect all text elements inside the section for character split
+      const textEls = section.querySelectorAll('.ch2-title, .ch2-meta-label, .ch2-number, .ch2-chapters-heading, .ch2-chapter-name, .ch2-chapter-num');
+      let allEndChars = [];
+
+      textEls.forEach(function(el) {
+        const split = new SplitText(el, {
+          type: 'chars',
+          charsClass: 'ch2-end-char'
+        });
+        allEndChars.push(...split.chars);
+      });
+
+      // Shuffle characters randomly for organic fade-out
+      const shuffledChars = allEndChars
+        .map(function(el, i) {
+          return { el: el, sort: Math.random() };
+        })
+        .sort(function(a, b) { return a.sort - b.sort; })
+        .map(function(item) { return item.el; });
+
+      // Pin the section and create scrub-linked exit timeline
+      const endTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'bottom bottom',
+          end: '+=150%',
+          pin: true,
+          scrub: 1
+        }
+      });
+
+      // Phase 0.5: Fade out non-text elements (lines, borders)
+      endTl.to('.ch2-meta-line', {
+        opacity: 0,
+        duration: 1,
+        ease: 'none'
+      }, 0.3);
+
+      endTl.to('.ch2-chapter-item', {
+        borderColor: 'rgba(0,0,0,0)',
+        duration: 1,
+        ease: 'none'
+      }, 0.5);
+
+      // Phase 1: Characters fade out randomly (0% - 60%)
+      endTl.to(shuffledChars, {
+        opacity: 0,
+        stagger: {
+          amount: 1.5,
+          from: 'random'
+        },
+        duration: 2,
+        ease: 'none'
+      }, 0);
+
+      // Phase 2: Section scales down + rounds corners + fades out (40% - 100%)
+      endTl.to(inner, {
+        scale: 0.85,
+        borderRadius: '0.5rem',
+        duration: 1.5,
+        ease: 'none'
+      }, 1);
+
+      endTl.to(inner, {
+        opacity: 0.1,
+        duration: 1.2,
+        ease: 'none'
+      }, 1.3);
+    }
+
+    initSectionEnd();
+
+    // ===== CHAPTER 2.1: GRIDS & LAYOUTS =====
+    function initGridsSection() {
+      const section = document.querySelector('.grids-section');
+      if (!section) return;
+
+      // Chapter label fade in
+      gsap.from('.grids-chapter-label', {
+        opacity: 0,
+        y: 10,
+        duration: 0.6,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: section, start: 'top 75%', once: true }
+      });
+
+      // Arrow card slide in from right
+      gsap.from('.grids-arrow-card', {
+        opacity: 0,
+        xPercent: 30,
+        duration: 0.9,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: section, start: 'top 70%', once: true }
+      });
+
+      // Grid specs heading
+      gsap.from('.grids-specs-heading', {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.grids-specs', start: 'top 88%', once: true }
+      });
+
+      // Spec rows stagger in
+      gsap.from('.grids-spec-row', {
+        opacity: 0,
+        y: 15,
+        duration: 0.5,
+        stagger: 0.12,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.grids-specs', start: 'top 88%', once: true }
+      });
+
+      // Right panel: Title SplitText word reveal
+      var gridsTitle = document.querySelector('.grids-title');
+      if (gridsTitle) {
+        SplitText.create(gridsTitle, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.9,
+              stagger: 0.04,
+              ease: 'ease-transition',
+              scrollTrigger: {
+                trigger: gridsTitle,
+                start: 'top 85%',
+                once: true
+              }
+            });
+          }
+        });
+      }
+
+      // Selector box scale in
+      gsap.from('.grids-selector', {
+        scale: 0.6,
+        opacity: 0,
+        duration: 1,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: '.grids-selector-wrap', start: 'top 80%', once: true }
+      });
+
+      // Crosshair rotation
+      gsap.to('.grids-crosshair', {
+        rotation: 360,
+        duration: 20,
+        repeat: -1,
+        ease: 'linear'
+      });
+
+      // Description text reveal
+      var gridsDesc = document.querySelector('.grids-description');
+      if (gridsDesc) {
+        SplitText.create(gridsDesc, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.8,
+              stagger: 0.02,
+              ease: 'ease-transition',
+              scrollTrigger: {
+                trigger: gridsDesc,
+                start: 'top 90%',
+                once: true
+              }
+            });
+          }
+        });
+      }
+
+      // Background grid lines subtle pulse
+      gsap.from('.grids-bg-line', {
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.06,
+        ease: 'steps(1)',
+        scrollTrigger: { trigger: section, start: 'top 80%', once: true }
+      });
+    }
+
+    initGridsSection();
+
+    // ===== GRIDS P2: STATEMENT SECTION =====
+    function initGridsStatement() {
+      const section = document.querySelector('.grids-statement-section');
+      if (!section) return;
+
+      // Statement text SplitText word reveal
+      var gsText = document.querySelector('.gs-text');
+      if (gsText) {
+        SplitText.create(gsText, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 1,
+              stagger: 0.04,
+              ease: 'ease-transition',
+              scrollTrigger: {
+                trigger: gsText,
+                start: 'top 85%',
+                once: true
+              }
+            });
+          }
+        });
+      }
+
+      // © Logo fade + scale
+      gsap.from('.gs-logo', {
+        opacity: 0,
+        scale: 0.5,
+        rotation: -90,
+        duration: 1,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: section, start: 'top 70%', once: true }
+      });
+
+      // Large rectangle draw in
+      gsap.from('.gs-rect-lg', {
+        opacity: 0,
+        scale: 0.7,
+        duration: 1.2,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: section, start: 'top 70%', once: true }
+      });
+
+      // Small rectangle draw in (delayed)
+      gsap.from('.gs-rect-sm', {
+        opacity: 0,
+        scale: 0.7,
+        duration: 1,
+        ease: 'ease-primary',
+        delay: 0.3,
+        scrollTrigger: { trigger: section, start: 'top 60%', once: true }
+      });
+
+      // Top-right lines
+      gsap.from('.gs-line-top', {
+        opacity: 0,
+        xPercent: 50,
+        duration: 0.7,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: section, start: 'top 75%', once: true }
+      });
+
+      // Yellow circle rises up from below
+      gsap.from('.gs-circle', {
+        yPercent: 60,
+        duration: 1.4,
+        ease: 'ease-primary',
+        scrollTrigger: { trigger: section, start: 'top 60%', once: true }
+      });
+
+      // Parallax on geometric elements as user scrolls
+      gsap.to('.gs-rect-lg', {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.gs-rect-sm', {
+        yPercent: -25,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.gs-circle', {
+        yPercent: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+
+    initGridsStatement();
+
+    // ===== CHAPTER 2.3: COLORS =====
+    function initColorsSection() {
+      var section = document.querySelector('.colors-section');
+      if (!section) return;
+
+      // Title word reveal
+      var colorsTitle = document.querySelector('.colors-title');
+      if (colorsTitle) {
+        SplitText.create(colorsTitle, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.9,
+              stagger: 0.03,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: colorsTitle, start: 'top 85%', once: true }
+            });
+          }
+        });
+      }
+
+      // Description word reveal
+      var colorsDesc = document.querySelector('.colors-desc');
+      if (colorsDesc) {
+        SplitText.create(colorsDesc, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.8,
+              stagger: 0.015,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: colorsDesc, start: 'top 85%', once: true }
+            });
+          }
+        });
+      }
+
+      // --- Light beam clipPath animation ---
+      var elements = gsap.utils.toArray('.colors-visual-gradient');
+
+      var finalStates = [
+        'polygon(0 6%, 100% 40%, 100% 56%, 0 11%)',
+        'polygon(0 11%, 100% 56%, 100% 74%, 0 14%)',
+        'polygon(0 14%, 100% 74%, 100% 88%, 0 16%)',
+        'polygon(0 16%, 100% 88%, 100% 102%, 0 20%)',
+        'polygon(0 20%, 100% 102%, 100% 130%, 0 26%)',
+        'polygon(0 26%, 100% 130%, 100% 160%, 0 34%)'
+      ];
+
+      elements.forEach(function(el, i) {
+        gsap.fromTo(el,
+          {
+            clipPath: 'polygon(0 ' + (6 + i * 5) + '%, 0 ' + (40 + i * 16) + '%, 0 ' + (56 + i * 18) + '%, 0 ' + (11 + i * 5) + '%)'
+          },
+          {
+            clipPath: finalStates[i],
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.colors-visual-wrap',
+              start: 'top ' + (70 - i * 8) + '%',
+              end: 'top ' + (40 - i * 8) + '%',
+              scrub: 1
+            }
+          }
+        );
+      });
+
+      // Cool tones label fade in
+      gsap.from('.colors-tone-cool', {
+        opacity: 0,
+        y: 15,
+        duration: 0.6,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.colors-visual-wrap', start: 'top 75%', once: true }
+      });
+
+      // Warm tones label fade in (later)
+      gsap.from('.colors-tone-warm', {
+        opacity: 0,
+        y: 15,
+        duration: 0.6,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.colors-visual-wrap', start: 'top 20%', once: true }
+      });
+
+      // Examples section
+      var exTitle = document.querySelector('.colors-examples-title');
+      if (exTitle) {
+        SplitText.create(exTitle, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.9,
+              stagger: 0.03,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: exTitle, start: 'top 85%', once: true }
+            });
+          }
+        });
+      }
+
+      var exText = document.querySelector('.colors-examples-text');
+      if (exText) {
+        SplitText.create(exText, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.8,
+              stagger: 0.012,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: exText, start: 'top 88%', once: true }
+            });
+          }
+        });
+      }
+
+      // Example preview slide up
+      gsap.from('.colors-example-preview', {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.colors-examples-right', start: 'top 85%', once: true }
+      });
+
+      gsap.from('.colors-example-label', {
+        opacity: 0,
+        y: 10,
+        duration: 0.5,
+        ease: 'ease-transition',
+        scrollTrigger: { trigger: '.colors-examples-right', start: 'top 88%', once: true }
+      });
+    }
+
+    initColorsSection();
+
+  </script>
+
+</body>
+</html>
