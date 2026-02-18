@@ -1694,6 +1694,266 @@
       height: 100%;
       position: absolute;
     }
+
+    /* ===== PRACTICE / CHAPTER 3 SECTION ===== */
+    .practice-section {
+      background: #070707;
+      padding-top: 2rem;
+      position: relative;
+    }
+
+    .practice-header {
+      padding: 0 2rem;
+      margin-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .practice-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .practice-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .practice-heading {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(24px, 3.5vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 20ch;
+    }
+
+    .practice-content {
+      position: relative;
+    }
+
+    .practice-inner {
+      padding: 2rem;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 125svh;
+    }
+
+    .practice-inner.is-absolute {
+      position: absolute;
+      inset: 0;
+    }
+
+    .practice-inner svg {
+      width: 100%;
+      height: auto;
+      color: #fff;
+    }
+
+    .practice-focus {
+      position: absolute;
+      inset: 50% 0 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .practice-focus-line {
+      background: #fff;
+      width: 3rem;
+      height: 1px;
+    }
+
+    .practice-focus-line.is-vertical {
+      position: absolute;
+      transform: rotate(90deg);
+      width: 3rem;
+    }
+
+    /* ===== RESOURCES SECTION ===== */
+    .resources-section {
+      background: #070707;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .resources-top {
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .resources-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      flex-shrink: 0;
+    }
+
+    .resources-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .resources-intro {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(16px, 1.8vw, 24px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: #fff;
+      max-width: 50%;
+    }
+
+    .resources-heading {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-top: clamp(4rem, 8vw, 10rem);
+      margin-bottom: clamp(2rem, 4vw, 5rem);
+      text-wrap: balance;
+    }
+
+    .resources-heading .indent {
+      margin-left: calc(50% / 2);
+    }
+
+    .resources-inner {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-top: clamp(2rem, 4vw, 5rem);
+    }
+
+    .resources-left {
+      width: 50%;
+      display: flex;
+      gap: 2rem;
+      padding-right: 4rem;
+      flex-shrink: 0;
+    }
+
+    .resources-left-label {
+      font-family: 'Rand Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      writing-mode: vertical-rl;
+      white-space: nowrap;
+    }
+
+    .resources-left svg {
+      width: 100%;
+      height: auto;
+      color: #fff;
+    }
+
+    .resources-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 4vw, 5rem);
+    }
+
+    .resources-category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .resources-category-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .resources-category-title {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .resources-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      text-decoration: none;
+      transition: background-color 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .resources-link:hover {
+      background-color: #fff;
+    }
+
+    .resources-link-text {
+      font-family: 'Rand Mono', monospace;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: color 0.2s cubic-bezier(0.19, 1, 0.22, 1), transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .resources-link-arrow {
+      font-family: 'Rand Mono', monospace;
+      font-size: 14px;
+      color: #fff;
+      transition: color 0.2s cubic-bezier(0.19, 1, 0.22, 1), transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .resources-link:hover .resources-link-text {
+      color: #000;
+      transform: translateX(10px);
+    }
+
+    .resources-link:hover .resources-link-arrow {
+      color: #000;
+      transform: translateX(-10px);
+    }
   </style>
 </head>
 <body>
@@ -2214,6 +2474,107 @@
         <div class="method-card-label">
           <div class="method-card-dot"></div>
           <span>SCROLLING</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRACTICE / CHAPTER 3 SECTION ===== -->
+  <section class="practice-section">
+    <div class="practice-header">
+      <div class="practice-eyebrow">
+        <div class="practice-eyebrow-dot"></div>
+        <span>Chapter 3: Final Word</span>
+      </div>
+      <h2 class="practice-heading" split-text-lines>Practice is where design becomes instinct.</h2>
+    </div>
+    <div class="practice-content">
+      <div class="practice-inner" id="practiceBase"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-inner is-absolute"></div>
+      <div class="practice-focus">
+        <div class="practice-focus-line"></div>
+        <div class="practice-focus-line is-vertical"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESOURCES SECTION ===== -->
+  <section class="resources-section">
+    <div class="resources-top">
+      <div class="resources-eyebrow">
+        <div class="resources-eyebrow-dot"></div>
+        <span>Put in the reps</span>
+      </div>
+      <p class="resources-intro">Create passion projects, experiment with animations, and explore new design ideas. The more you build, break, and refine, the sharper your creative instincts get. Make connections, refine your taste, and have fun making websites.</p>
+    </div>
+
+    <h3 class="resources-heading" data-split="heading"><span class="indent">We</span> understand the process of a creative website can be overwhelming so here is a collection of resources for you to learn and use.</h3>
+
+    <div class="resources-inner">
+      <div class="resources-left">
+        <div class="resources-left-label">RESOURCES CURATED BY HUY AND IVOR</div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 535 714" fill="none"><path d="M0 0H286.318C364.133 0 423.325 17.6247 463.895 52.874C504.465 88.1234 524.75 139.002 524.75 205.51C524.75 234.774 519.097 261.71 507.79 286.318C497.149 310.261 481.852 330.546 461.9 347.173C442.612 363.135 420.332 374.109 395.059 380.094V382.09C428.313 388.741 453.586 405.035 470.878 430.973C488.17 456.911 499.477 485.51 504.797 516.769C510.783 547.363 515.106 584.275 517.766 627.505C519.762 654.773 521.757 674.393 523.752 686.365C525.748 698.336 529.405 705.32 534.726 707.315V713.301H437.957C433.966 709.31 431.306 701.662 429.976 690.355C428.645 678.384 427.98 662.089 427.98 641.472C426.65 598.907 423.325 563.325 418.004 534.726C413.349 505.462 401.377 479.857 382.09 457.909C362.802 435.961 333.539 424.988 294.299 424.988H89.7861V713.301H0V0ZM265.368 345.178C301.282 345.178 331.876 339.857 357.149 329.216C382.422 318.574 401.71 302.945 415.011 282.327C428.313 261.71 434.964 236.769 434.964 207.506C434.964 164.94 421.662 133.016 395.059 111.734C369.121 90.4512 326.888 79.8099 268.361 79.8099H89.7861V345.178H265.368Z" fill="currentColor"></path></svg>
+      </div>
+
+      <div class="resources-right">
+        <!-- Books -->
+        <div class="resources-category">
+          <div class="resources-category-header">
+            <div class="resources-category-dot"></div>
+            <h4 class="resources-category-title">Books</h4>
+          </div>
+          <div class="resources-links">
+            <a href="https://victionary.com/products/sans-in-use" target="_blank" class="resources-link"><span class="resources-link-text">SANS-in-USE by Victionary</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://victionary.com/products/display-in-use" target="_blank" class="resources-link"><span class="resources-link-text">display-in-use by victionary</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://victionary.com/products/serif-in-use" target="_blank" class="resources-link"><span class="resources-link-text">Serif-in-use by victionary</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.amazon.com.au/dp/3721201450" target="_blank" class="resources-link"><span class="resources-link-text">grid systems in graphic design by Josef Muller-Brockmann</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://victionary.com/products/new-utilitarian?variant=44509817176306" target="_blank" class="resources-link"><span class="resources-link-text">New Utilitarian by VICTIONARY</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.amazon.com.au/dp/1797226827" target="_blank" class="resources-link"><span class="resources-link-text">Thinking with type by ellen lupton</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.amazon.com.au/dp/0465050654" target="_blank" class="resources-link"><span class="resources-link-text">The design of everyday things by don norman</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.amazon.com.au/dp/0321965515" target="_blank" class="resources-link"><span class="resources-link-text">Don't make me think by steve krug</span><span class="resources-link-arrow">&#x2197;</span></a>
+          </div>
+        </div>
+
+        <!-- Courses and Communities -->
+        <div class="resources-category">
+          <div class="resources-category-header">
+            <div class="resources-category-dot"></div>
+            <h4 class="resources-category-title">Courses and Communities</h4>
+          </div>
+          <div class="resources-links">
+            <a href="https://blog.maximeheckel.com/" target="_blank" class="resources-link"><span class="resources-link-text">Maxime Heckel's blog (3d blogs)</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://threejs-journey.com/" target="_blank" class="resources-link"><span class="resources-link-text">Three.js Journey</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.youtube.com/@olivierlarose1" target="_blank" class="resources-link"><span class="resources-link-text">oliver larose's youtube</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.youtube.com/@iljavaneck" target="_blank" class="resources-link"><span class="resources-link-text">Ilja van eck's youtube</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.osmo.supply/" target="_blank" class="resources-link"><span class="resources-link-text">OSMO</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://madewithgsap.com/" target="_blank" class="resources-link"><span class="resources-link-text">Made with gsap</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://www.youtube.com/watch?v=uDqjIdI4bF4&t=6s" target="_blank" class="resources-link"><span class="resources-link-text">12 Principles of animations</span><span class="resources-link-arrow">&#x2197;</span></a>
+          </div>
+        </div>
+
+        <!-- Inspiration -->
+        <div class="resources-category">
+          <div class="resources-category-header">
+            <div class="resources-category-dot"></div>
+            <h4 class="resources-category-title">Inspiration</h4>
+          </div>
+          <div class="resources-links">
+            <a href="https://inspo.page" target="_blank" class="resources-link"><span class="resources-link-text">INSPO.page</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://awwwards.com" target="_blank" class="resources-link"><span class="resources-link-text">AWWWARDS.com</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://footer.design" target="_blank" class="resources-link"><span class="resources-link-text">FOOTER.DESIGN</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://minimal.gallery" target="_blank" class="resources-link"><span class="resources-link-text">minimal.gallery</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://maxibestof.one/" target="_blank" class="resources-link"><span class="resources-link-text">maxibestof</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://muzli.me" target="_blank" class="resources-link"><span class="resources-link-text">muzli.me</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://fontsinuse.com" target="_blank" class="resources-link"><span class="resources-link-text">fontsinuse.com</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://grids.obys.agency/" target="_blank" class="resources-link"><span class="resources-link-text">Grids by obys agency</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://motion.zajno.com/" target="_blank" class="resources-link"><span class="resources-link-text">Motion by Zajno</span><span class="resources-link-arrow">&#x2197;</span></a>
+            <a href="https://savee.com/" target="_blank" class="resources-link"><span class="resources-link-text">savee.com</span><span class="resources-link-arrow">&#x2197;</span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -3564,6 +3925,63 @@
     }
 
     initMethodsSection();
+
+    // ===== PRACTICE SECTION (Chapter 3) =====
+    function initPracticeSection() {
+      var practiceSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1387 236" fill="none"><path d="M1226.11 4.43164H1382.78V29.7516H1254.6V100.964H1367.59V126.284H1254.6V205.409H1386.58V230.729H1226.11V4.43164Z" fill="currentColor"></path><path d="M1106.44 235.159C1085.97 235.159 1067.82 230.095 1052 219.967C1036.17 209.839 1023.83 195.913 1014.97 178.189C1006.1 160.254 1001.67 139.998 1001.67 117.421C1001.67 94.8442 1006.1 74.6938 1014.97 56.9698C1023.83 39.0349 1036.17 25.1089 1052 15.1919C1067.82 5.06398 1085.97 0 1106.44 0C1124.37 0 1140.3 3.58699 1154.23 10.761C1168.15 17.7239 1179.23 27.2189 1187.46 39.2459C1195.69 51.2729 1200.75 64.5658 1202.65 79.1248H1172.9C1171.21 70.4738 1168.05 62.1393 1163.4 54.1213C1158.76 46.1034 1151.69 39.3514 1142.2 33.8654C1132.92 28.1684 1120.99 25.3199 1106.44 25.3199C1089.34 25.3199 1075.21 29.6454 1064.02 38.2964C1052.84 46.9474 1044.61 58.2358 1039.34 72.1618C1034.06 86.0878 1031.42 101.174 1031.42 117.421C1031.42 133.668 1034.06 148.86 1039.34 162.997C1044.61 176.923 1052.84 188.211 1064.02 196.862C1075.21 205.513 1089.34 209.839 1106.44 209.839C1121.42 209.839 1133.76 206.885 1143.47 200.977C1153.17 195.069 1160.35 187.578 1164.99 178.505C1169.63 169.222 1172.27 159.41 1172.9 149.071H1202.65C1200.96 165.74 1196 180.615 1187.78 193.697C1179.55 206.779 1168.47 217.013 1154.54 224.398C1140.62 231.572 1124.58 235.159 1106.44 235.159Z" fill="currentColor"></path><path d="M947.146 4.43164H975.631V230.729H947.146V4.43164Z" fill="currentColor"></path><path d="M824.756 29.7516H749.43V4.43164H928.568V29.7516H853.241V230.729H824.756V29.7516Z" fill="currentColor"></path><path d="M658.935 235.159C638.468 235.159 620.322 230.095 604.497 219.967C588.672 209.839 576.329 195.913 567.467 178.189C558.605 160.254 554.174 139.998 554.174 117.421C554.174 94.8442 558.605 74.6938 567.467 56.9698C576.329 39.0349 588.672 25.1089 604.497 15.1919C620.322 5.06398 638.468 0 658.935 0C676.87 0 692.8 3.58699 706.726 10.761C720.652 17.7239 731.73 27.2189 739.959 39.2459C748.188 51.2729 753.252 64.5658 755.151 79.1248H725.4C723.712 70.4738 720.547 62.1393 715.905 54.1213C711.263 46.1034 704.194 39.3514 694.699 33.8654C685.415 28.1684 673.494 25.3199 658.935 25.3199C641.844 25.3199 627.707 29.6454 616.524 38.2964C605.341 46.9474 597.112 58.2358 591.837 72.1618C586.562 86.0878 583.925 101.174 583.925 117.421C583.925 133.668 586.562 148.86 591.837 162.997C597.112 176.923 605.341 188.211 616.524 196.862C627.707 205.513 641.844 209.839 658.935 209.839C673.916 209.839 686.259 206.885 695.965 200.977C705.671 195.069 712.845 187.578 717.487 178.505C722.129 169.222 724.767 159.41 725.4 149.071H755.151C753.463 165.74 748.504 180.615 740.275 193.697C732.046 206.779 720.969 217.013 707.043 224.398C693.117 231.572 677.081 235.159 658.935 235.159Z" fill="currentColor"></path><path d="M441.765 4.43164H473.731L557.92 230.729H527.219L507.28 174.075H407.583L387.643 230.729H358.209L441.765 4.43164ZM498.102 148.755L457.906 30.7011H457.273L417.078 148.755H498.102Z" fill="currentColor"></path><path d="M184.299 4.43164H275.134C299.821 4.43164 318.6 10.0231 331.471 21.2061C344.342 32.3891 350.777 48.5305 350.777 69.6305C350.777 78.9144 348.984 87.4599 345.397 95.2669C342.021 102.863 337.168 109.298 330.838 114.573C324.719 119.637 317.65 123.119 309.632 125.018V125.651C320.182 127.761 328.2 132.93 333.686 141.159C339.172 149.388 342.759 158.461 344.447 168.378C346.346 178.084 347.718 189.795 348.562 203.51C349.195 212.161 349.828 218.385 350.461 222.183C351.094 225.981 352.254 228.197 353.942 228.829V230.729H323.242C321.976 229.463 321.132 227.036 320.71 223.449C320.288 219.651 320.077 214.482 320.077 207.941C319.655 194.437 318.6 183.148 316.912 174.075C315.435 164.791 311.637 156.668 305.518 149.705C299.399 142.742 290.115 139.26 277.666 139.26H212.784V230.729H184.299V4.43164ZM268.488 113.94C279.882 113.94 289.588 112.252 297.605 108.876C305.623 105.5 311.742 100.542 315.962 94.0009C320.182 87.4599 322.292 79.5474 322.292 70.2635C322.292 56.7595 318.072 46.6315 309.632 39.8795C301.403 33.1276 288.005 29.7516 269.437 29.7516H212.784V113.94H268.488Z" fill="currentColor"></path><path d="M0 4.43164H89.8857C112.041 4.43164 129.765 9.81213 143.058 20.5731C156.562 31.1231 163.314 47.6865 163.314 70.2635C163.314 85.4554 160.149 98.0099 153.819 107.927C147.489 117.633 138.838 124.807 127.866 129.449C116.894 133.88 104.234 136.095 89.8857 136.095H28.4849V230.729H0V4.43164ZM91.7847 110.775C101.28 110.775 109.087 109.298 115.206 106.344C121.325 103.39 125.861 98.9594 128.815 93.0514C131.98 87.1434 133.563 79.5474 133.563 70.2635C133.563 56.5485 130.081 46.4205 123.118 39.8795C116.366 33.1276 105.922 29.7516 91.7847 29.7516H28.4849V110.775H91.7847Z" fill="currentColor"></path></svg>';
+
+      // Inject SVG into each practice-inner (top + bottom)
+      var inners = document.querySelectorAll('.practice-inner');
+      inners.forEach(function(el) {
+        el.innerHTML = practiceSvg + practiceSvg;
+        // Position: first SVG at top, second at bottom
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+        el.style.justifyContent = 'space-between';
+      });
+
+      // Animate absolute layers on scroll
+      var layers = document.querySelectorAll('.practice-inner.is-absolute');
+      layers.forEach(function(el, index) {
+        var targetScale = Math.pow(0.85, index + 1);
+        gsap.to(el, {
+          scale: targetScale,
+          ease: 'power2.out',
+          transformOrigin: 'center center',
+          scrollTrigger: {
+            trigger: '.practice-content',
+            start: 'top center',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      });
+    }
+
+    initPracticeSection();
+
+    // ===== GLOBAL: data-split="heading" word reveal =====
+    document.querySelectorAll('[data-split="heading"]').forEach(function(el) {
+      SplitText.create(el, {
+        type: 'words',
+        autoSplit: true,
+        mask: 'words',
+        wordsClass: 'words-split',
+        onSplit: function(self) {
+          gsap.from(self.words, {
+            duration: 0.9,
+            yPercent: 101,
+            stagger: 0.02,
+            ease: 'ease-transition',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+              once: true
+            }
+          });
+        }
+      });
+    });
 
   </script>
 
