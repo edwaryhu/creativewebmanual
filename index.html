@@ -1438,6 +1438,211 @@
       object-fit: cover;
       opacity: 0.4;
     }
+
+    /* ===== METHODS / ANIMATION SECTION (2.4) ===== */
+    .methods-section {
+      background: #070707;
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .methods-header {
+      max-width: 700px;
+      margin-bottom: 5rem;
+    }
+
+    .methods-title {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(64px, 12vw, 160px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .methods-desc {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.85);
+      overflow: hidden;
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0;
+      position: relative;
+    }
+
+    .method-card {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 340px;
+      position: relative;
+    }
+
+    .method-card-number {
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2rem;
+    }
+
+    .method-card-visual {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .method-card-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Rand Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .method-card-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.4);
+      flex-shrink: 0;
+    }
+
+    /* Card 04 scrolling - spans 2 rows */
+    .method-card-scrolling {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      min-height: 680px;
+    }
+
+    /* TEXT card number */
+    .method-number-display {
+      font-family: 'PP Neue Montreal', sans-serif;
+      font-size: clamp(80px, 14vw, 180px);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    /* HOVER card arrow */
+    .method-arrows-wrap {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .method-arrow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.9s cubic-bezier(0.055, 0.72, 0.165, 1);
+    }
+
+    .method-arrow svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .method-arrow-main {
+      transform: translate(0, 0);
+    }
+
+    .method-arrow-hover {
+      transform: translate(-100%, 0);
+    }
+
+    .method-arrows-wrap:hover .method-arrow-main {
+      transform: translate(100%, 0);
+    }
+
+    .method-arrows-wrap:hover .method-arrow-hover {
+      transform: translate(0, 0);
+    }
+
+    /* ICONS card star */
+    .method-star {
+      width: 80px;
+      height: 80px;
+      transform-style: preserve-3d;
+    }
+
+    .method-star svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* SCROLLING card globe */
+    .method-globe {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .globe-circle {
+      position: absolute;
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .globe-equator {
+      position: absolute;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      top: 50%;
+      left: 0;
+    }
+
+    .globe-horizontal {
+      position: absolute;
+      width: 90%;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      left: 5%;
+    }
+
+    .globe-outline {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+    }
   </style>
 </head>
 <body>
@@ -1853,6 +2058,92 @@
           <div class="colors-example-preview-inner">
             <div style="width:100%;height:100%;background:linear-gradient(180deg, #87CEEB 0%, #4a8f4a 60%, #2d5a2d 100%);opacity:0.5;border-radius:2px;"></div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methods / Animation Section (2.4) -->
+  <section class="methods-section">
+    <div class="methods-header">
+      <h2 class="methods-title" data-split="heading">Methods</h2>
+      <p class="methods-desc" data-split="global">Any element can be animated, but here are some of the most common ways to implement motion for the web.</p>
+    </div>
+
+    <div class="methods-grid">
+      <!-- Card 01: TEXT -->
+      <div class="method-card">
+        <div class="method-card-number">01</div>
+        <div class="method-card-visual">
+          <div class="method-number-display" data-anim="number">0</div>
+        </div>
+        <div class="method-card-label">
+          <div class="method-card-dot"></div>
+          <span>TEXT</span>
+        </div>
+      </div>
+
+      <!-- Card 02: HOVER -->
+      <div class="method-card">
+        <div class="method-card-number">02</div>
+        <div class="method-card-visual">
+          <div class="method-arrows-wrap">
+            <div class="method-arrow method-arrow-main">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 50H80M80 50L55 25M80 50L55 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="method-arrow method-arrow-hover">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 50H80M80 50L55 25M80 50L55 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="method-card-label">
+          <div class="method-card-dot"></div>
+          <span>HOVER</span>
+        </div>
+      </div>
+
+      <!-- Card 04: SCROLLING (spans 2 rows) -->
+      <div class="method-card method-card-scrolling">
+        <div class="method-card-number">04</div>
+        <div class="method-card-visual">
+          <div class="method-globe" data-accelerating-globe>
+            <div class="globe-outline"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:50%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:37.5%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:25%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:12.5%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:12.5%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:25%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:37.5%"></div>
+            <div class="globe-circle" data-accelerating-globe-circle style="width:50%"></div>
+            <div class="globe-equator"></div>
+            <div class="globe-horizontal" style="top:30%"></div>
+            <div class="globe-horizontal" style="top:70%"></div>
+          </div>
+        </div>
+        <div class="method-card-label">
+          <div class="method-card-dot"></div>
+          <span>SCROLLING</span>
+        </div>
+      </div>
+
+      <!-- Card 03: ICONS -->
+      <div class="method-card">
+        <div class="method-card-number">03</div>
+        <div class="method-card-visual">
+          <div class="method-star" star>
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 0L44.5 30.2L68.3 11.7L49.8 35.5L80 40L49.8 44.5L68.3 68.3L44.5 49.8L40 80L35.5 49.8L11.7 68.3L30.2 44.5L0 40L30.2 35.5L11.7 11.7L35.5 30.2L40 0Z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="method-card-label">
+          <div class="method-card-dot"></div>
+          <span>ICONS</span>
         </div>
       </div>
     </div>
@@ -3051,6 +3342,153 @@
     }
 
     initColorsSection();
+
+    // ===== CHAPTER 2.4: METHODS / ANIMATION =====
+    function initMethodsSection() {
+      var section = document.querySelector('.methods-section');
+      if (!section) return;
+
+      // Title word reveal
+      var methodsTitle = document.querySelector('.methods-title');
+      if (methodsTitle) {
+        SplitText.create(methodsTitle, {
+          type: 'words',
+          autoSplit: true,
+          mask: 'words',
+          wordsClass: 'words-split',
+          onSplit: function(self) {
+            gsap.from(self.words, {
+              yPercent: 101,
+              duration: 0.9,
+              stagger: 0.02,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: methodsTitle, start: 'top 80%', once: true }
+            });
+          }
+        });
+      }
+
+      // Description line reveal
+      var methodsDesc = document.querySelector('.methods-desc');
+      if (methodsDesc) {
+        SplitText.create(methodsDesc, {
+          type: 'lines',
+          autoSplit: true,
+          mask: 'lines',
+          linesClass: 'lines-split',
+          onSplit: function(self) {
+            gsap.from(self.lines, {
+              yPercent: 100,
+              duration: 0.9,
+              stagger: 0.15,
+              ease: 'ease-transition',
+              scrollTrigger: { trigger: methodsDesc, start: 'top 80%', once: true }
+            });
+          }
+        });
+      }
+
+      // ---- Card 01: TEXT - Number counter ----
+      var numberEl = document.querySelector('[data-anim=number]');
+      var trigger = document.querySelector('.methods-grid');
+      if (numberEl && trigger) {
+        var animNumber = { value: 0 };
+        function numCount() {
+          numberEl.textContent = Math.round(animNumber.value);
+        }
+        gsap.to(animNumber, {
+          delay: 0.2,
+          onUpdate: numCount,
+          ease: 'power1.inOut',
+          value: 50,
+          duration: 3,
+          repeat: -1,
+          repeatDelay: 0.5,
+          yoyo: true,
+          scrollTrigger: {
+            trigger: trigger,
+            start: 'top bottom'
+          }
+        });
+      }
+
+      // ---- Card 03: ICONS - Star 3D flip ----
+      var stars = document.querySelectorAll('[star]');
+      gsap.set(stars, {
+        transformPerspective: 1000,
+        transformOrigin: 'center center'
+      });
+      stars.forEach(function(star) {
+        gsap.to(star, {
+          rotationY: 360,
+          duration: 4,
+          ease: 'none',
+          repeat: -1,
+          transformOrigin: 'center center'
+        });
+      });
+
+      // ---- Card 04: SCROLLING - Accelerating Globe ----
+      document.querySelectorAll('[data-accelerating-globe]').forEach(function(globe) {
+        var circles = globe.querySelectorAll('[data-accelerating-globe-circle]');
+        if (circles.length < 8) return;
+
+        var tl = gsap.timeline({
+          repeat: -1,
+          defaults: { duration: 1, ease: 'none' }
+        });
+
+        var widths = [
+          ['50%', '37.5%'],
+          ['37.5%', '25%'],
+          ['25%', '12.5%'],
+          ['calc(12.5% + 1px)', 'calc(0% + 1px)'],
+          ['calc(0% + 1px)', 'calc(12.5% + 1px)'],
+          ['12.5%', '25%'],
+          ['25%', '37.5%'],
+          ['37.5%', '50%']
+        ];
+
+        circles.forEach(function(el, i) {
+          var fromW = widths[i][0];
+          var toW = widths[i][1];
+          tl.fromTo(el, { width: fromW }, { width: toW }, i === 0 ? 0 : '<');
+        });
+
+        // Scroll-velocity acceleration
+        var lastY = window.scrollY;
+        var lastT = performance.now();
+        var stopTimeout;
+
+        function onScroll() {
+          var now = performance.now();
+          var dy = window.scrollY - lastY;
+          var dt = now - lastT;
+          lastY = window.scrollY;
+          lastT = now;
+
+          var velocity = dt > 0 ? (dy / dt) * 1000 : 0;
+          var boost = Math.abs(velocity * 0.005);
+          var targetScale = boost + 1;
+
+          tl.timeScale(targetScale);
+
+          clearTimeout(stopTimeout);
+          stopTimeout = setTimeout(function() {
+            gsap.to(tl, {
+              timeScale: 1,
+              duration: 0.6,
+              ease: 'power2.out',
+              overwrite: true
+            });
+          }, 100);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+      });
+    }
+
+    initMethodsSection();
 
   </script>
 
