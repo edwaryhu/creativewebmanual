@@ -1473,20 +1473,32 @@
       overflow: hidden;
     }
 
-    .methods-grid {
+    /* Bento grid: left cards + right globe */
+    .methods-bento {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 0;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .methods-bento-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: relative;
     }
 
+    .methods-bento-top {
+      display: flex;
+      gap: 2rem;
+    }
+
     .method-card {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding: 1.2rem 0;
+      border-top: 1px solid #fff;
+      padding: 1rem 0;
       display: flex;
       flex-direction: column;
-      min-height: 340px;
+      justify-content: space-between;
+      flex: 1;
       position: relative;
     }
 
@@ -1495,7 +1507,6 @@
       font-size: 12px;
       font-weight: 400;
       color: rgba(255,255,255,0.5);
-      margin-bottom: 2rem;
     }
 
     .method-card-visual {
@@ -1503,6 +1514,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 2rem 0;
     }
 
     .method-card-label {
@@ -1515,133 +1527,172 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.6);
-      margin-top: auto;
-      padding-top: 1rem;
     }
 
     .method-card-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.4);
+      background: #fff;
       flex-shrink: 0;
-    }
-
-    /* Card 04 scrolling - spans 2 rows */
-    .method-card-scrolling {
-      grid-column: 3;
-      grid-row: 1 / 3;
-      min-height: 680px;
     }
 
     /* TEXT card number */
     .method-number-display {
       font-family: 'PP Neue Montreal', sans-serif;
-      font-size: clamp(80px, 14vw, 180px);
-      font-weight: 300;
+      font-size: 9vw;
+      font-weight: 400;
       color: #fff;
       line-height: 1;
       letter-spacing: -0.04em;
+      text-align: center;
+      width: 9vw;
     }
 
     /* HOVER card arrow */
     .method-arrows-wrap {
-      width: 120px;
-      height: 120px;
+      width: 5rem;
+      height: 5rem;
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
     }
 
-    .method-arrow {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .method-arrow-main {
       width: 100%;
-      height: 100%;
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.9s cubic-bezier(0.055, 0.72, 0.165, 1);
     }
 
-    .method-arrow svg {
+    .method-arrow-main svg {
       width: 100%;
       height: 100%;
     }
 
-    .method-arrow-main {
-      transform: translate(0, 0);
-    }
-
     .method-arrow-hover {
+      width: 100%;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transform: translate(-100%, 0);
+      transition: transform 0.9s cubic-bezier(0.055, 0.72, 0.165, 1);
     }
 
-    .method-arrows-wrap:hover .method-arrow-main {
+    .method-arrow-hover svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .method-card.is-arrow-hover:hover .method-arrow-main {
       transform: translate(100%, 0);
     }
 
-    .method-arrows-wrap:hover .method-arrow-hover {
+    .method-card.is-arrow-hover:hover .method-arrow-hover {
       transform: translate(0, 0);
     }
 
     /* ICONS card star */
-    .method-star {
-      width: 80px;
-      height: 80px;
+    .method-star-wrap {
+      color: #fff;
+      width: 18vw;
       transform-style: preserve-3d;
     }
 
-    .method-star svg {
+    .method-star-wrap svg {
       width: 100%;
-      height: 100%;
+      height: auto;
     }
 
     /* SCROLLING card globe */
-    .method-globe {
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 1;
-      position: relative;
+    .method-globe-wrap {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid #fff;
+      padding: 1rem 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .globe {
+      color: #fff;
       justify-content: center;
+      align-items: center;
+      width: 37.5vw;
+      display: flex;
+      position: relative;
     }
 
-    .globe-circle {
-      position: absolute;
-      height: 100%;
-      border: 1px solid rgba(255,255,255,0.3);
+    .globe__before {
+      padding-top: 100%;
+    }
+
+    .globe__back {
       border-radius: 50%;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .globe-equator {
-      position: absolute;
-      width: 100%;
-      border-top: 1px solid rgba(255,255,255,0.3);
-      top: 50%;
-      left: 0;
-    }
-
-    .globe-horizontal {
-      position: absolute;
-      width: 90%;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      left: 5%;
-    }
-
-    .globe-outline {
-      position: absolute;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       height: 100%;
-      border: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      position: absolute;
+      overflow: hidden;
+    }
+
+    .globe__back-circle {
+      border: 1px solid currentColor;
       border-radius: 50%;
-      top: 0;
-      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .globe__back-circle.is--1 { width: 50%; height: 16%; top: 0%; }
+    .globe__back-circle.is--2 { width: 87.5%; height: 24%; top: 14%; }
+    .globe__back-circle.is--3 { width: 100%; height: 28%; top: 36%; }
+    .globe__back-circle.is--4 { width: 87.5%; height: 24%; top: 62%; }
+    .globe__back-circle.is--5 { width: 50%; height: 16%; top: 84%; }
+
+    .globe__front {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .globe__mirror {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .globe__mirror.is--duplicate {
+      transform: scaleX(-1);
+    }
+
+    .globe__circle {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      left: auto;
+      right: 50%;
+      overflow: hidden;
+    }
+
+    .globe__circle-inner {
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      width: 200%;
+      height: 100%;
+      position: absolute;
     }
   </style>
 </head>
@@ -2070,80 +2121,99 @@
       <p class="methods-desc" data-split="global">Any element can be animated, but here are some of the most common ways to implement motion for the web.</p>
     </div>
 
-    <div class="methods-grid">
-      <!-- Card 01: TEXT -->
-      <div class="method-card">
-        <div class="method-card-number">01</div>
-        <div class="method-card-visual">
-          <div class="method-number-display" data-anim="number">0</div>
-        </div>
-        <div class="method-card-label">
-          <div class="method-card-dot"></div>
-          <span>TEXT</span>
-        </div>
-      </div>
-
-      <!-- Card 02: HOVER -->
-      <div class="method-card">
-        <div class="method-card-number">02</div>
-        <div class="method-card-visual">
-          <div class="method-arrows-wrap">
-            <div class="method-arrow method-arrow-main">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 50H80M80 50L55 25M80 50L55 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+    <div class="methods-bento">
+      <!-- Left side: cards 01, 02, 03 -->
+      <div class="methods-bento-left">
+        <div class="methods-bento-top">
+          <!-- Card 01: TEXT -->
+          <div class="method-card">
+            <div class="method-card-number">01</div>
+            <div class="method-card-visual">
+              <h1 class="method-number-display" data-anim="number">0</h1>
             </div>
-            <div class="method-arrow method-arrow-hover">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 50H80M80 50L55 25M80 50L55 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <div class="method-card-label">
+              <div class="method-card-dot"></div>
+              <span>TEXT</span>
+            </div>
+          </div>
+
+          <!-- Card 02: HOVER -->
+          <div class="method-card is-arrow-hover">
+            <div class="method-card-number">02</div>
+            <div class="method-card-visual">
+              <div class="method-arrows-wrap">
+                <div class="method-arrow-hover">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 145 145" fill="none">
+                    <g clip-path="url(#clip_arrow_h)"><path d="M72.1283 144.843L62.5908 135.387L118.846 79.2122H7.08839L6.99255 72.3134L7.08775 65.6327L118.846 65.6334L62.5908 9.45901L72.1283 0.00233188L144.549 72.4228L72.1283 144.843Z" fill="currentColor"/></g>
+                    <defs><clipPath id="clip_arrow_h"><rect width="102" height="102" fill="currentColor" transform="translate(72.125) rotate(45)"/></clipPath></defs>
+                  </svg>
+                </div>
+                <div class="method-arrow-main">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 145 145" fill="none">
+                    <g clip-path="url(#clip_arrow_m)"><path d="M72.1283 144.843L62.5908 135.387L118.846 79.2122H7.08839L6.99255 72.3134L7.08775 65.6327L118.846 65.6334L62.5908 9.45901L72.1283 0.00233188L144.549 72.4228L72.1283 144.843Z" fill="currentColor"/></g>
+                    <defs><clipPath id="clip_arrow_m"><rect width="102" height="102" fill="currentColor" transform="translate(72.125) rotate(45)"/></clipPath></defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="method-card-label">
+              <div class="method-card-dot"></div>
+              <span>HOVER</span>
             </div>
           </div>
         </div>
-        <div class="method-card-label">
-          <div class="method-card-dot"></div>
-          <span>HOVER</span>
+
+        <!-- Card 03: ICONS -->
+        <div class="method-card">
+          <div class="method-card-number">03</div>
+          <div class="method-card-visual">
+            <div class="method-star-wrap" star>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 160 148" fill="none">
+                <path d="M61.5719 33.4367C62.4035 29.11 68.5965 29.11 69.4281 33.4367L77.1606 73.6663C77.4695 75.2736 78.7264 76.5305 80.3337 76.8394L120.563 84.5719C124.89 85.4035 124.89 91.5965 120.563 92.4281L80.3337 100.161C78.7264 100.469 77.4695 101.726 77.1606 103.334L69.4281 143.563C68.5965 147.89 62.4035 147.89 61.5719 143.563L53.8394 103.334C53.5305 101.726 52.2736 100.469 50.6663 100.161L10.4367 92.4281C6.11004 91.5965 6.11003 85.4035 10.4367 84.5719L50.6663 76.8394C52.2736 76.5305 53.5305 75.2736 53.8394 73.6663L61.5719 33.4367Z" fill="currentColor" star/>
+                <path d="M126.054 4.32752C126.678 1.08253 131.322 1.08253 131.946 4.32751L134.42 17.1999C134.652 18.4054 135.595 19.348 136.8 19.5797L149.672 22.0539C152.917 22.6776 152.917 27.3224 149.672 27.9461L136.8 30.4203C135.595 30.652 134.652 31.5946 134.42 32.8001L131.946 45.6725C131.322 48.9175 126.678 48.9175 126.054 45.6725L123.58 32.8001C123.348 31.5946 122.405 30.652 121.2 30.4203L108.328 27.9461C105.083 27.3224 105.083 22.6776 108.328 22.0539L121.2 19.5797C122.405 19.348 123.348 18.4054 123.58 17.1999L126.054 4.32752Z" fill="currentColor" star/>
+              </svg>
+            </div>
+          </div>
+          <div class="method-card-label">
+            <div class="method-card-dot"></div>
+            <span>ICONS</span>
+          </div>
         </div>
       </div>
 
-      <!-- Card 04: SCROLLING (spans 2 rows) -->
-      <div class="method-card method-card-scrolling">
+      <!-- Right side: Card 04 SCROLLING (globe) -->
+      <div class="method-globe-wrap">
         <div class="method-card-number">04</div>
         <div class="method-card-visual">
-          <div class="method-globe" data-accelerating-globe>
-            <div class="globe-outline"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:50%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:37.5%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:25%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:12.5%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:12.5%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:25%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:37.5%"></div>
-            <div class="globe-circle" data-accelerating-globe-circle style="width:50%"></div>
-            <div class="globe-equator"></div>
-            <div class="globe-horizontal" style="top:30%"></div>
-            <div class="globe-horizontal" style="top:70%"></div>
+          <div class="globe" data-accelerating-globe>
+            <div class="globe__before"></div>
+            <div class="globe__back">
+              <div class="globe__back-circle"></div>
+              <div class="globe__back-circle is--1"></div>
+              <div class="globe__back-circle is--2"></div>
+              <div class="globe__back-circle is--3"></div>
+              <div class="globe__back-circle is--4"></div>
+              <div class="globe__back-circle is--5"></div>
+            </div>
+            <div class="globe__front">
+              <div class="globe__mirror" data-accelerating-globe>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+              </div>
+              <div class="globe__mirror is--duplicate" data-accelerating-globe>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+                <div class="globe__circle" data-accelerating-globe-circle><div class="globe__circle-inner"></div></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="method-card-label">
           <div class="method-card-dot"></div>
           <span>SCROLLING</span>
-        </div>
-      </div>
-
-      <!-- Card 03: ICONS -->
-      <div class="method-card">
-        <div class="method-card-number">03</div>
-        <div class="method-card-visual">
-          <div class="method-star" star>
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 0L44.5 30.2L68.3 11.7L49.8 35.5L80 40L49.8 44.5L68.3 68.3L44.5 49.8L40 80L35.5 49.8L11.7 68.3L30.2 44.5L0 40L30.2 35.5L11.7 11.7L35.5 30.2L40 0Z" fill="white"/>
-            </svg>
-          </div>
-        </div>
-        <div class="method-card-label">
-          <div class="method-card-dot"></div>
-          <span>ICONS</span>
         </div>
       </div>
     </div>
@@ -3413,7 +3483,7 @@
       }
 
       // ---- Card 03: ICONS - Star 3D flip ----
-      var stars = document.querySelectorAll('[star]');
+      var stars = document.querySelectorAll('.method-star-wrap');
       gsap.set(stars, {
         transformPerspective: 1000,
         transformOrigin: 'center center'
@@ -3429,9 +3499,12 @@
       });
 
       // ---- Card 04: SCROLLING - Accelerating Globe ----
-      document.querySelectorAll('[data-accelerating-globe]').forEach(function(globe) {
-        var circles = globe.querySelectorAll('[data-accelerating-globe-circle]');
-        if (circles.length < 8) return;
+      var globeMirrors = document.querySelectorAll('.globe__mirror');
+      var globeTimelines = [];
+
+      globeMirrors.forEach(function(mirror) {
+        var circles = mirror.querySelectorAll('[data-accelerating-globe-circle]');
+        if (circles.length < 4) return;
 
         var tl = gsap.timeline({
           repeat: -1,
@@ -3442,25 +3515,23 @@
           ['50%', '37.5%'],
           ['37.5%', '25%'],
           ['25%', '12.5%'],
-          ['calc(12.5% + 1px)', 'calc(0% + 1px)'],
-          ['calc(0% + 1px)', 'calc(12.5% + 1px)'],
-          ['12.5%', '25%'],
-          ['25%', '37.5%'],
-          ['37.5%', '50%']
+          ['calc(12.5% + 1px)', 'calc(0% + 1px)']
         ];
 
         circles.forEach(function(el, i) {
-          var fromW = widths[i][0];
-          var toW = widths[i][1];
-          tl.fromTo(el, { width: fromW }, { width: toW }, i === 0 ? 0 : '<');
+          tl.fromTo(el, { width: widths[i][0] }, { width: widths[i][1] }, i === 0 ? 0 : '<');
         });
 
-        // Scroll-velocity acceleration
+        globeTimelines.push(tl);
+      });
+
+      // Scroll-velocity acceleration for all globe timelines
+      if (globeTimelines.length) {
         var lastY = window.scrollY;
         var lastT = performance.now();
         var stopTimeout;
 
-        function onScroll() {
+        function onGlobeScroll() {
           var now = performance.now();
           var dy = window.scrollY - lastY;
           var dt = now - lastT;
@@ -3471,21 +3542,25 @@
           var boost = Math.abs(velocity * 0.005);
           var targetScale = boost + 1;
 
-          tl.timeScale(targetScale);
+          globeTimelines.forEach(function(tl) {
+            tl.timeScale(targetScale);
+          });
 
           clearTimeout(stopTimeout);
           stopTimeout = setTimeout(function() {
-            gsap.to(tl, {
-              timeScale: 1,
-              duration: 0.6,
-              ease: 'power2.out',
-              overwrite: true
+            globeTimelines.forEach(function(tl) {
+              gsap.to(tl, {
+                timeScale: 1,
+                duration: 0.6,
+                ease: 'power2.out',
+                overwrite: true
+              });
             });
           }, 100);
         }
 
-        window.addEventListener('scroll', onScroll, { passive: true });
-      });
+        window.addEventListener('scroll', onGlobeScroll, { passive: true });
+      }
     }
 
     initMethodsSection();
