@@ -1959,6 +1959,10 @@
     .hero-duplicate .hero-bottom {
       opacity: 1;
     }
+
+    .hero-duplicate .hero-title {
+      font-weight: 200;
+    }
   </style>
 </head>
 <body>
@@ -4101,6 +4105,20 @@
             }
           });
         }
+      });
+    });
+
+    // ===== HERO DUPLICATE: SplitText to match original char rendering =====
+    document.querySelectorAll('.hero-duplicate .hero-title').forEach(function(line) {
+      var split = new SplitText(line, {
+        type: 'words, chars',
+        wordsClass: 'word-wrap',
+        charsClass: 'char'
+      });
+      split.words.forEach(function(w) {
+        w.style.overflow = 'hidden';
+        w.style.display = 'inline-flex';
+        w.style.verticalAlign = 'top';
       });
     });
 
